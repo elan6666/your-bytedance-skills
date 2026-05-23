@@ -22,6 +22,8 @@ USER_ASSUMPTIONS.md
 PRODUCT_SPEC.md
 UX_SPEC.md
 TECH_SPEC.md
+CODEBASE_MAP.md
+HARNESS.md
 ROADMAP.md
 BUILD_LOG.md
 DELIVERY.md
@@ -34,6 +36,7 @@ plans/
 reviews/
 iterations/
 users/
+subagents/
 ```
 
 5. Count plan statuses:
@@ -50,6 +53,7 @@ blocked
 
 - No `.byte-os/`: `byte-start`
 - Started but no specs: `byte-shape`
+- Existing codebase but no harness: `byte-codebase-harness`
 - Specs but no plans: `byte-plan`
 - Plans incomplete: `byte-build`
 - Build complete but no review: `byte-review`
@@ -71,6 +75,8 @@ Plans:
 Reviews:
 Iterations:
 Real user feedback:
+Harness:
+Subagents:
 Blockers:
 Next:
 ```

@@ -35,10 +35,19 @@ This is the Byte OS engineering guardrail layer. It adapts the MIT-licensed Karp
    - Run the most relevant available tests, linters, type checks, builds, browser checks, or manual verification.
    - Record what was verified and what remains unverified.
 
+5. Navigate large codebases deliberately.
+   - Read `AGENTS.md`, `CLAUDE.md`, `.byte-os/CODEBASE_MAP.md`, and `.byte-os/HARNESS.md` when they exist.
+   - Start in the relevant module directory when the task is scoped; do not default to repo root for every search.
+   - Use scoped test/lint/build commands from local context files or plan metadata.
+   - Exclude generated files, build outputs, dependency folders, vendored code, and large artifacts unless they are the task target.
+   - Prefer LSP or symbol-aware navigation when available; use `rg` and direct file reads as the reliable fallback.
+   - Use read-only exploration summaries or subagents before editing unfamiliar subsystems.
+
 ## Byte OS Integration
 
 - `byte-plan`: every engineering plan must include write scope, non-goals, acceptance criteria, and verification steps.
 - `byte-build`: apply these rules before file edits, during implementation, and before marking a plan complete.
+- `byte-codebase-harness`: create or maintain Claude/Codex context files, codebase maps, scoped command matrices, and noise filters before large-codebase execution.
 - `byte-review`: flag overengineering, broad unrelated edits, unverified success criteria, and hidden assumptions as findings.
 - `byte-iterate`: each code change must map to evidence, an OKR, a review finding, a test failure, or real user feedback.
 - `byte-auto`: keep the same rules even in one-click mode; speed comes from parallelism and clear state, not skipping verification.

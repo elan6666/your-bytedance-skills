@@ -18,6 +18,8 @@ Read available artifacts:
 .byte-os/TECH_SPEC.md
 .byte-os/ROADMAP.md
 .byte-os/OKRS.md
+.byte-os/CODEBASE_MAP.md
+.byte-os/HARNESS.md
 .byte-os/plans/*.plan.md
 .byte-os/BUILD_LOG.md
 ```
@@ -55,6 +57,8 @@ Check:
 - Did the work advance the stated Objective or Key Results?
 - Which assumptions need an experiment or real user evidence?
 - Did coding work follow `byte-code-rules`: simple implementation, surgical diff, no unrelated refactors, explicit assumptions, and recorded verification?
+- For existing codebases, did the work use the right `AGENTS.md`/`CLAUDE.md`, scoped commands, codebase map, noise filters, and start directory?
+- If subagents were used, were their scopes isolated, factual, verified, and reviewed by the main agent before completion?
 
 ## Output
 
@@ -87,6 +91,12 @@ Tests, checks, or user evidence still missing
 
 # Engineering Rule Findings
 Overengineering, broad unrelated edits, hidden assumptions, unverified success criteria, or cleanup risks
+
+# Harness Findings
+Missing or stale codebase maps, root-context bloat, unscoped commands, noisy generated paths, weak LSP guidance, or unsafe start directories
+
+# Subagent Findings
+Scope overlap, unreviewed handoffs, missing verification, exploratory edits, or unclear ownership
 
 # Decision
 Next command

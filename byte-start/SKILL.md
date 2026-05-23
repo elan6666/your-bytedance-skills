@@ -56,6 +56,8 @@ Useful optional details:
 - Growth Analyst: adoption, retention, monetization signals.
 - Product Director: final foundation summary.
 
+If starting inside an existing repository, record that codebase harness setup is needed and recommend `byte-codebase-harness` before `byte-plan` or `byte-build`.
+
 Use the Your ByteDance style: keep the foundation direct, evidence-led, and Day 1 simple. Label facts, assumptions, and open questions separately.
 
 Use actual subagents only when explicitly authorized by the user or auto workflow. Otherwise run these roles inline.
@@ -72,6 +74,8 @@ Write or update:
 .byte-os/RESEARCH.md
 .byte-os/COMPETITORS.md
 .byte-os/USER_ASSUMPTIONS.md
+.byte-os/CODEBASE_MAP.md if an existing codebase is detected
+.byte-os/HARNESS.md if an existing codebase is detected
 ```
 
 `BYTE.md` must include:
@@ -98,6 +102,7 @@ Write or update:
 - Current command: byte-start
 - Next recommended command: byte-shape
 - Open blockers
+- Harness status if working in an existing repo
 - Last updated date
 
 `DECISIONS.md` must start a decision log with timestamped decisions and assumptions.
@@ -110,4 +115,5 @@ End with the next command:
 
 ```text
 byte-shape
+byte-codebase-harness if this is an existing repository
 ```

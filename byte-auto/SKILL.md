@@ -27,6 +27,7 @@ Run:
 enable Pursue Goal mode
 sync project goal
 byte-start
+byte-codebase-harness if working in an existing repo or large codebase
 byte-shape
 byte-plan
 byte-build --all
@@ -43,6 +44,8 @@ N = max(user_requested_iterations, 3)
 ```
 
 If the project already has `.byte-os/`, resume from the earliest incomplete stage.
+
+If the work happens inside an existing repository, monorepo, legacy codebase, or multi-service system, run `byte-codebase-harness` before planning or building so Claude and Codex both get navigable context.
 
 ## Goal Integration
 
@@ -123,6 +126,8 @@ Ensure these exist by the end:
 .byte-os/PRODUCT_SPEC.md
 .byte-os/UX_SPEC.md
 .byte-os/TECH_SPEC.md
+.byte-os/CODEBASE_MAP.md
+.byte-os/HARNESS.md
 .byte-os/ROADMAP.md
 .byte-os/plans/*.plan.md
 .byte-os/BUILD_LOG.md

@@ -18,6 +18,8 @@ Read:
 .byte-os/ROADMAP.md
 .byte-os/OKRS.md
 .byte-os/DECISIONS.md
+.byte-os/CODEBASE_MAP.md
+.byte-os/HARNESS.md
 ```
 
 If these are missing, run or recommend `byte-shape`.
@@ -34,6 +36,9 @@ If these are missing, run or recommend `byte-shape`.
 - Mark dependencies explicitly.
 - Break every plan into explicit ordered steps: Step 1, Step 2, Step 3, etc.
 - Each step must state what to do, why it is needed, touched files or modules, expected output, and how to verify that step.
+- For existing codebases, use `.byte-os/CODEBASE_MAP.md` and `.byte-os/HARNESS.md` to choose the relevant start directory, applicable `CLAUDE.md`/`AGENTS.md`, and scoped commands.
+- Prefer module-level test/lint/build commands over whole-repo commands when a plan touches one service or package.
+- Mark whether each plan or step can be delegated to a subagent. Delegate only when scope, files, and verification are clear.
 - Keep unrelated future ideas out of v0 plans.
 
 ## Plan File Format
@@ -48,6 +53,9 @@ status: pending
 wave: 1
 owner_role: Tech Lead
 depends_on: []
+start_directory: .
+context_files: [AGENTS.md, CLAUDE.md]
+subagent_policy: none | read_only_exploration | implementation_allowed
 ---
 
 # Goal
@@ -67,6 +75,7 @@ depends_on: []
 - Files or modules:
 - Expected output:
 - Step verification:
+- Subagent: none | read_only_exploration | implementation_allowed
 
 ## Step 2: <short action title>
 
@@ -75,8 +84,24 @@ depends_on: []
 - Files or modules:
 - Expected output:
 - Step verification:
+- Subagent: none | read_only_exploration | implementation_allowed
 
 # Dependencies
+
+# Scoped Commands
+
+- Test:
+- Lint:
+- Typecheck:
+- Build:
+
+# Subagent Plan
+
+- Exploration subagents:
+- Implementation subagents:
+- Review subagents:
+- Isolation boundaries:
+- Merge or handoff notes:
 
 # Code Change Guardrails
 
@@ -160,6 +185,31 @@ Use steps to decompose requirements, for example:
 ```
 
 The `# Acceptance Criteria` section still describes the plan-level finish line. The `# Verification` section still describes the final checks for the whole plan.
+
+## Subagent Design
+
+Use subagents for parallelism and context isolation, not for vague outsourcing.
+
+Good subagent tasks:
+
+- Map one unfamiliar subsystem and write `.byte-os/subagents/exploration-<area>.md`.
+- Implement one isolated module with explicit files and tests.
+- Review one completed plan against acceptance criteria.
+
+Avoid subagents when:
+
+- The write scope overlaps heavily.
+- Product decisions are unresolved.
+- The task requires continuous cross-file judgment by the main agent.
+- Verification cannot be scoped.
+
+Every implementation subagent must have:
+
+- Allowed files or directories
+- Non-goals
+- Acceptance criteria
+- Verification command
+- Handoff format
 
 ## Artifacts
 

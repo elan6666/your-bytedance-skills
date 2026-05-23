@@ -24,6 +24,7 @@ Your own ByteDance for building products with Codex.
 - 搜索竞品、替代方案、定价、趋势和用户抱怨。
 - 定义产品定位、MVP、用户流程、UX 和技术方向。
 - 把产品方案拆成带依赖关系的可执行计划。
+- 为大代码库生成 Claude/Codex 双入口上下文、codebase map、目录级命令和噪声过滤规则。
 - 按 execution wave 构建，而不是机械执行 plan 1、plan 2、plan 3。
 - 用 Karpathy-inspired 工程守则约束代码：先想清楚、保持简单、只做必要改动、验证成功标准。
 - 像跨职能项目组一样做产品、设计、技术、QA、增长评审。
@@ -95,6 +96,7 @@ byte-auto
 | `byte-start` | 初始化 `.byte-os/`，理解想法，创建产品基础上下文。 |
 | `byte-research` | 搜索竞品、市场信号、定价、趋势和用户抱怨。 |
 | `byte-shape` | 定义定位、MVP、范围、UX、技术方向和路线图。 |
+| `byte-codebase-harness` | 为大代码库配置 Claude/Codex 导航层、codebase map、scoped commands、noise filters、LSP 和 subagent 探索。 |
 | `byte-plan` | 把产品方案拆成带依赖关系的可执行计划。 |
 | `byte-build` | 按 dependency-ready waves 执行计划。 |
 | `byte-code-rules` | 写代码、评审、重构、迭代时使用的工程行为守则。 |
@@ -122,12 +124,15 @@ Your ByteDance 会把项目上下文写入：
   PRODUCT_SPEC.md
   UX_SPEC.md
   TECH_SPEC.md
+  CODEBASE_MAP.md
+  HARNESS.md
   ROADMAP.md
   BUILD_LOG.md
   DELIVERY.md
   plans/
   reviews/
   iterations/
+  subagents/
   users/
 ```
 
@@ -180,6 +185,7 @@ $byte-users 这里是我们原型测试的用户访谈记录和录屏观察
 - `byte-auto` 和逐步模式共享同一套阶段，只是自动连续执行。
 - 现代竞品、价格、市场趋势或 “latest” 信息必须联网搜索并引用来源。
 - 每个阶段都应该更新或遵守当前 Objective、Key Results、决策记录和证据等级。
+- 现有仓库、大代码库或 monorepo 应先运行 `byte-codebase-harness`，让 Claude 和 Codex 共享可导航上下文。
 
 ### 公开资料依据
 
@@ -190,6 +196,7 @@ $byte-users 这里是我们原型测试的用户访谈记录和录屏观察
 - [TechNode: Feishu People / OKR](https://technode.com/2022/05/26/bytedance-launches-hr-management-tool-feishu-people/)
 - [BytePlus A/B Testing Guide](https://www.byteplus.com/downloads/How-to-Avoid-Common-Mistakes-When-AB-Testing.pdf)
 - [forrestchang/andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills)
+- [Anthropic: How Claude Code works in large codebases](https://claude.com/blog/how-claude-code-works-in-large-codebases-best-practices-and-where-to-start)
 
 ---
 
@@ -207,6 +214,7 @@ All skill names use the `byte-*` prefix.
 - Research competitors, alternatives, pricing, trends, and user complaints.
 - Shape product positioning, MVP scope, user flows, UX, and technical direction.
 - Split product work into dependency-aware executable plans.
+- Create Claude/Codex codebase context, codebase maps, scoped commands, and noise filters for large repositories.
 - Build by execution waves instead of blindly running plan 1, plan 2, plan 3.
 - Apply Karpathy-inspired engineering rules: think first, keep code simple, make surgical edits, and verify success criteria.
 - Review the product like a cross-functional squad.
@@ -278,6 +286,7 @@ byte-auto
 | `byte-start` | Initialize `.byte-os/`, understand the idea, and create product context. |
 | `byte-research` | Research competitors, market signals, pricing, trends, and user complaints. |
 | `byte-shape` | Define positioning, MVP, scope, UX, technical direction, and roadmap. |
+| `byte-codebase-harness` | Configure Claude/Codex navigation context, codebase maps, scoped commands, noise filters, LSP guidance, and subagent exploration for large repos. |
 | `byte-plan` | Convert specs into dependency-aware executable plans. |
 | `byte-build` | Execute plans by dependency-ready waves. |
 | `byte-code-rules` | Engineering behavior rules for coding, review, refactoring, and iteration. |
@@ -305,12 +314,15 @@ Your ByteDance writes state into:
   PRODUCT_SPEC.md
   UX_SPEC.md
   TECH_SPEC.md
+  CODEBASE_MAP.md
+  HARNESS.md
   ROADMAP.md
   BUILD_LOG.md
   DELIVERY.md
   plans/
   reviews/
   iterations/
+  subagents/
   users/
 ```
 
@@ -363,6 +375,7 @@ $byte-users Here are user interview notes and session recordings from our protot
 - `byte-auto` uses the same staged workflow as manual mode; it just runs the stages continuously.
 - Modern competitor, pricing, market, or "latest" claims require current web research and citations.
 - Every stage should update or respect the current Objective, Key Results, decision log, and evidence level.
+- Existing repositories, large codebases, or monorepos should run `byte-codebase-harness` before planning or building so Claude and Codex share navigable context.
 
 ### Public Research Basis
 
@@ -373,3 +386,4 @@ This suite is ByteDance-inspired, not ByteDance-official. The operating model is
 - [TechNode: Feishu People / OKR](https://technode.com/2022/05/26/bytedance-launches-hr-management-tool-feishu-people/)
 - [BytePlus A/B Testing Guide](https://www.byteplus.com/downloads/How-to-Avoid-Common-Mistakes-When-AB-Testing.pdf)
 - [forrestchang/andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills)
+- [Anthropic: How Claude Code works in large codebases](https://claude.com/blog/how-claude-code-works-in-large-codebases-best-practices-and-where-to-start)

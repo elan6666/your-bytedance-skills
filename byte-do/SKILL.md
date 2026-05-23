@@ -36,12 +36,15 @@ Use `.byte-os/` in the current project root:
   PRODUCT_SPEC.md
   UX_SPEC.md
   TECH_SPEC.md
+  CODEBASE_MAP.md
+  HARNESS.md
   ROADMAP.md
   DELIVERY.md
   plans/
   reviews/
   iterations/
   users/
+  subagents/
 ```
 
 If the directory does not exist, only `byte-start`, `byte-auto`, or a status explanation can proceed.
@@ -56,9 +59,11 @@ Apply the first strong match:
 | "start", "new product", "from zero", no `.byte-os/` | `byte-start` |
 | "research", "competitors", "benchmark", "pricing", "market" | `byte-research` |
 | "shape", "MVP", "positioning", "scope", "flows", "design product" | `byte-shape` |
+| "large codebase", "monorepo", "CLAUDE.md", "AGENTS.md", "codebase map", "harness", "LSP", "Claude and Codex", "noise filters" | `byte-codebase-harness` |
 | "plan", "break down", "roadmap to tasks", "plans" | `byte-plan` |
 | "build", "implement", "execute", "develop" | `byte-build` |
 | "code rules", "coding guidelines", "engineering rules", "Karpathy" | `byte-code-rules` |
+| "subagent", "subagents", "parallel agents", "exploration agent", "read-only agent" | `byte-codebase-harness` for exploration setup, or `byte-plan`/`byte-build` if plans already exist |
 | "review", "audit", "check quality", "project meeting" | `byte-review` |
 | "real users", "feedback", "user testing", "interview notes", "analytics" | `byte-users` |
 | "iterate", "next version", "improve", "optimize" | `byte-iterate` |
@@ -75,6 +80,7 @@ After routing, execute the selected workflow. If the selected skill body is avai
 - `byte-start`: create `.byte-os/` and write project foundation files, including visible OKRs.
 - `byte-research`: browse current sources for market and competitor facts, cite links, write `RESEARCH.md` and `COMPETITORS.md`.
 - `byte-shape`: write product, UX, technical, and roadmap specs.
+- `byte-codebase-harness`: create Claude/Codex context files, codebase map, scoped command matrix, noise filters, and harness status.
 - `byte-plan`: create dependency-aware plan files under `.byte-os/plans/`.
 - `byte-build`: execute the next dependency-ready plan wave, or the requested `--plan`, `--wave`, or `--all`.
 - `byte-code-rules`: apply simple, surgical, verifiable engineering behavior rules.
