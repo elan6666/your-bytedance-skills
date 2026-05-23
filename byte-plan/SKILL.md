@@ -32,6 +32,8 @@ If these are missing, run or recommend `byte-shape`.
 - Include verification steps in every plan.
 - Connect every plan to at least one Objective or Key Result.
 - Mark dependencies explicitly.
+- Break every plan into explicit ordered steps: Step 1, Step 2, Step 3, etc.
+- Each step must state what to do, why it is needed, touched files or modules, expected output, and how to verify that step.
 - Keep unrelated future ideas out of v0 plans.
 
 ## Plan File Format
@@ -56,7 +58,23 @@ depends_on: []
 
 # Non-Goals
 
-# Tasks
+# Steps
+
+## Step 1: <short action title>
+
+- Purpose:
+- Actions:
+- Files or modules:
+- Expected output:
+- Step verification:
+
+## Step 2: <short action title>
+
+- Purpose:
+- Actions:
+- Files or modules:
+- Expected output:
+- Step verification:
 
 # Dependencies
 
@@ -111,6 +129,37 @@ Assign wave numbers so `byte-build` can execute:
 - Wave 5: launch and delivery
 
 Use the Your ByteDance style: plans should be transparent enough that another agent can execute with context, not control.
+
+## Step Design
+
+Plan files must be actionable step documents, not vague task lists.
+
+Each step should be small enough to execute in one focused pass and concrete enough that `byte-build` can follow it without re-planning. Prefer this shape:
+
+```markdown
+## Step N: <verb + object>
+
+- Purpose: <why this step exists>
+- Actions:
+  - <specific action>
+  - <specific action>
+- Files or modules:
+  - <path or module>
+- Expected output: <observable result>
+- Step verification: <command, inspection, test, or manual check>
+```
+
+Use steps to decompose requirements, for example:
+
+```markdown
+## Step 1: Create the project shell
+## Step 2: Build the primary user flow
+## Step 3: Add persistence
+## Step 4: Add empty, loading, and error states
+## Step 5: Verify the workflow end to end
+```
+
+The `# Acceptance Criteria` section still describes the plan-level finish line. The `# Verification` section still describes the final checks for the whole plan.
 
 ## Artifacts
 
