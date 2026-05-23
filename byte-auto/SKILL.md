@@ -24,7 +24,8 @@ Ask only for the product idea if it is missing. If iteration count is missing, d
 Run:
 
 ```text
-goal sync
+enable Codex goals
+goal sync or /goal
 byte-start
 byte-shape
 byte-plan
@@ -45,7 +46,23 @@ If the project already has `.byte-os/`, resume from the earliest incomplete stag
 
 ## Goal Integration
 
-At the beginning of auto mode, create or refresh a single Codex goal for the project.
+At the beginning of auto mode, turn on and use the Codex goals feature for the project.
+
+If the Codex CLI is available, check the feature flag:
+
+```text
+codex features list
+```
+
+If `goals` is present but disabled, enable it:
+
+```text
+codex features enable goals
+```
+
+Do not block auto mode if the CLI is unavailable, the feature is already enabled, or goal management is only exposed through the app UI.
+
+Then create or refresh a single Codex goal for the project.
 
 Use this goal to track the end-to-end outcome:
 
@@ -53,7 +70,7 @@ Use this goal to track the end-to-end outcome:
 Deliver <product idea> for <target user> as <delivery format>, with Byte OS planning, build, review, at least 3 iteration loops, and final handoff.
 ```
 
-If the environment provides a way to create or update Codex goals, use it. If only the user-facing slash command is available, do not claim to have executed it. Instead, show the exact command for the user to run:
+If the environment provides a way to create or update Codex goals, use it. If only the user-facing slash command is available, do not claim to have executed it. Instead, show the exact command for the user to run before continuing:
 
 ```text
 /goal Deliver <product idea> for <target user> as <delivery format>, with Byte OS planning, build, review, at least 3 iteration loops, and final handoff.
