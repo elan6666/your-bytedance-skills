@@ -24,6 +24,7 @@ Ask only for the product idea if it is missing. If iteration count is missing, d
 Run:
 
 ```text
+goal sync
 byte-start
 byte-shape
 byte-plan
@@ -41,6 +42,24 @@ N = max(user_requested_iterations, 3)
 ```
 
 If the project already has `.byte-os/`, resume from the earliest incomplete stage.
+
+## Goal Integration
+
+At the beginning of auto mode, create or refresh a single Codex goal for the project.
+
+Use this goal to track the end-to-end outcome:
+
+```text
+Deliver <product idea> for <target user> as <delivery format>, with Byte OS planning, build, review, at least 3 iteration loops, and final handoff.
+```
+
+If the environment provides a way to create or update Codex goals, use it. If only the user-facing slash command is available, do not claim to have executed it. Instead, show the exact command for the user to run:
+
+```text
+/goal Deliver <product idea> for <target user> as <delivery format>, with Byte OS planning, build, review, at least 3 iteration loops, and final handoff.
+```
+
+After the goal is created or proposed, mirror the same objective in `.byte-os/STATUS.md` and `.byte-os/OKRS.md` so Byte OS can continue even if the goal feature is unavailable.
 
 ## Auto Mode Rules
 
