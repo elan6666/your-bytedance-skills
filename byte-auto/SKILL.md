@@ -24,8 +24,8 @@ Ask only for the product idea if it is missing. If iteration count is missing, d
 Run:
 
 ```text
-enable Codex goals
-goal sync or /goal
+enable Pursue Goal mode
+sync project goal
 byte-start
 byte-shape
 byte-plan
@@ -46,23 +46,29 @@ If the project already has `.byte-os/`, resume from the earliest incomplete stag
 
 ## Goal Integration
 
-At the beginning of auto mode, turn on and use the Codex goals feature for the project.
+At the beginning of auto mode, turn on and use Codex's **Pursue Goal** mode for the project.
 
-If the Codex CLI is available, check the feature flag:
+In the Codex composer UI, this is the `追求目标` toggle in the attachment/plus menu. If the UI is available and the toggle is off, ask the user to turn it on before continuing:
+
+```text
+Open the plus menu, enable 追求目标, then continue byte-auto.
+```
+
+If the Codex CLI is available, you may also check that the underlying goals feature exists:
 
 ```text
 codex features list
 ```
 
-If `goals` is present but disabled, enable it:
+If `goals` is present but disabled and the CLI supports enabling it, enable it:
 
 ```text
 codex features enable goals
 ```
 
-Do not block auto mode if the CLI is unavailable, the feature is already enabled, or goal management is only exposed through the app UI.
+Do not claim that Pursue Goal mode has been enabled unless the UI/tool state confirms it. If the toggle cannot be controlled directly, ask the user to enable it and then continue. Do not block auto mode if the feature is already enabled or the environment has no goal UI.
 
-Then create or refresh a single Codex goal for the project.
+Then create, refresh, or propose a single Codex goal for the project.
 
 Use this goal to track the end-to-end outcome:
 
