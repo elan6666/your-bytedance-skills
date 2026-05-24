@@ -1,11 +1,13 @@
 ---
 name: byte-discuss
-description: Discuss and clarify Your ByteDance / Byte OS product requirements before planning or building. Use when the user wants to brainstorm, discuss requirements, clarify an idea, ask what is unclear, confirm scope, compare product directions, or explicitly says not to write code yet.
+description: Discuss and clarify Your ByteDance / Byte OS product requirements before planning or building. Use when the user wants to discuss requirements, clarify an idea, ask what is unclear, confirm scope, compare product directions, or explicitly says not to write code yet.
 ---
 
 # Byte Discuss
 
 Discuss is the requirement-clarification mode. It helps the user turn a rough idea into confirmed product direction without starting implementation.
+
+For broad idea expansion, use `$byte-brainstorm` only when the user explicitly invokes it. Do not silently switch discussion into brainstorm mode.
 
 ## Boundaries
 

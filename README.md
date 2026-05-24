@@ -93,6 +93,7 @@ byte-auto
 | Skill | 作用 |
 |---|---|
 | `byte-do` | 自然语言入口，自动路由到合适的 Byte OS skill。 |
+| `byte-brainstorm` | 显式调用的想法扩展模式，不在自动工作流里，不自动触发。 |
 | `byte-discuss` | 讨论和澄清需求，自动询问不清楚的需求点和确认项，不写代码。 |
 | `byte-start` | 初始化 `.byte-os/`，理解想法，创建产品基础上下文。 |
 | `byte-research` | 搜索竞品、市场信号、定价、趋势和用户抱怨。 |
@@ -153,6 +154,12 @@ $byte-do 我想做一个面向大学生的 AI 学习助手
 
 ```text
 $byte-discuss 我想做一个面向大学生的 AI 学习助手，先帮我问清楚需求
+```
+
+显式扩展想法，不进入工作流：
+
+```text
+$byte-brainstorm 我想做一个 AI 学习助手，帮我扩展 10 个不同方向
 ```
 
 一键跑完整流程：
@@ -293,6 +300,7 @@ byte-auto
 | Skill | Purpose |
 |---|---|
 | `byte-do` | Natural-language router for the Byte OS suite. |
+| `byte-brainstorm` | Explicit-only idea expansion mode outside the automatic workflow. |
 | `byte-discuss` | Discuss and clarify requirements, ask unclear requirement questions, and confirm scope without writing code. |
 | `byte-start` | Initialize `.byte-os/`, understand the idea, and create product context. |
 | `byte-research` | Research competitors, market signals, pricing, trends, and user complaints. |
@@ -353,6 +361,12 @@ Discuss requirements before writing code:
 
 ```text
 $byte-discuss I want to build an AI study assistant for university students. Ask what is unclear first.
+```
+
+Explicitly expand ideas outside the workflow:
+
+```text
+$byte-brainstorm Expand my AI study assistant idea into 10 different directions.
 ```
 
 Run the full workflow automatically:

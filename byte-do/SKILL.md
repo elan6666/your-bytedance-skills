@@ -57,7 +57,7 @@ Apply the first strong match:
 | User intent | Route |
 |---|---|
 | "one click", "auto", "do it all", "from idea to delivery", "all tasks", "don't stop until done", "goal-like execution", "一键完成", "所有任务", "不完成不停" | `byte-auto` |
-| "discuss", "brainstorm", "clarify", "requirements discussion", "confirm scope", "unclear requirements", "don't write code yet", "讨论", "讨论需求", "先聊", "先别写代码", "确认需求", "不清楚的需求" | `byte-discuss` |
+| "discuss", "clarify", "requirements discussion", "confirm scope", "unclear requirements", "don't write code yet", "讨论", "讨论需求", "先聊", "先别写代码", "确认需求", "不清楚的需求" | `byte-discuss` |
 | "start", "new product", "from zero", no `.byte-os/` | `byte-start` |
 | "research", "competitors", "benchmark", "pricing", "market" | `byte-research` |
 | "shape", "MVP", "positioning", "scope", "flows", "design product" | `byte-shape` |
@@ -74,6 +74,8 @@ Apply the first strong match:
 | "deliver", "handoff", "final package", "ship" | `byte-deliver` |
 
 If two routes are plausible, choose the route that advances the byte state. Ask one concise question only when choosing would be risky.
+
+`byte-brainstorm` is explicit-only and outside the normal workflow. Do not route to it from `byte-do`; the user must invoke `$byte-brainstorm` directly.
 
 ## Execution Rule
 
