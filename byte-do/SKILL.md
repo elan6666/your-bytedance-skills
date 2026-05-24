@@ -36,6 +36,7 @@ Use `.byte-os/` in the current project root:
   PRODUCT_SPEC.md
   UX_SPEC.md
   TECH_SPEC.md
+  DISCUSSION.md
   CODEBASE_MAP.md
   HARNESS.md
   ROADMAP.md
@@ -56,6 +57,7 @@ Apply the first strong match:
 | User intent | Route |
 |---|---|
 | "one click", "auto", "do it all", "from idea to delivery", "all tasks", "don't stop until done", "goal-like execution", "一键完成", "所有任务", "不完成不停" | `byte-auto` |
+| "discuss", "brainstorm", "clarify", "requirements discussion", "confirm scope", "unclear requirements", "don't write code yet", "讨论", "讨论需求", "先聊", "先别写代码", "确认需求", "不清楚的需求" | `byte-discuss` |
 | "start", "new product", "from zero", no `.byte-os/` | `byte-start` |
 | "research", "competitors", "benchmark", "pricing", "market" | `byte-research` |
 | "shape", "MVP", "positioning", "scope", "flows", "design product" | `byte-shape` |
@@ -78,6 +80,7 @@ If two routes are plausible, choose the route that advances the byte state. Ask 
 After routing, execute the selected workflow. If the selected skill body is available in the environment, follow it. If it is not available, use this fallback:
 
 - `byte-start`: create `.byte-os/` and write project foundation files, including visible OKRs.
+- `byte-discuss`: clarify requirements, ask targeted questions, suggest defaults, and optionally write `.byte-os/DISCUSSION.md` without writing product code.
 - `byte-research`: browse current sources for market and competitor facts, cite links, write `RESEARCH.md` and `COMPETITORS.md`.
 - `byte-shape`: write product, UX, technical, and roadmap specs.
 - `byte-codebase-harness`: create Claude/Codex context files, codebase map, scoped command matrix, noise filters, and harness status.

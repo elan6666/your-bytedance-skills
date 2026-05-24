@@ -24,6 +24,7 @@ Do not use `byte-next` as a substitute for auto mode. If the user asks for one-c
 | State | Next workflow |
 |---|---|
 | No `.byte-os/` | `byte-start` |
+| Stage is discussing or `DISCUSSION.md` exists but no `PRODUCT_SPEC.md` | `byte-shape` |
 | Project exists, no `PRODUCT_SPEC.md` | `byte-shape` |
 | Specs exist, no plan files | `byte-plan` |
 | Plans exist and incomplete | `byte-build` |

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Your ByteDance Discuss"
+  short_description: "Clarify requirements before planning or building."
+  default_prompt: "Use $byte-discuss to discuss this product idea, ask unclear requirement questions, suggest defaults, and confirm scope before any code is written."

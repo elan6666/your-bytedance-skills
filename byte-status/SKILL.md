@@ -19,6 +19,7 @@ OKRS.md
 RESEARCH.md
 COMPETITORS.md
 USER_ASSUMPTIONS.md
+DISCUSSION.md
 PRODUCT_SPEC.md
 UX_SPEC.md
 TECH_SPEC.md
@@ -52,6 +53,7 @@ blocked
 6. Identify next action:
 
 - No `.byte-os/`: `byte-start`
+- Stage is discussing or `DISCUSSION.md` exists but no specs: `byte-shape`
 - Started but no specs: `byte-shape`
 - Existing codebase but no harness: `byte-codebase-harness`
 - Specs but no plans: `byte-plan`
@@ -75,6 +77,7 @@ Plans:
 Reviews:
 Iterations:
 Real user feedback:
+Discussion:
 Harness:
 Subagents:
 Blockers:

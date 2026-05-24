@@ -93,6 +93,7 @@ byte-auto
 | Skill | 作用 |
 |---|---|
 | `byte-do` | 自然语言入口，自动路由到合适的 Byte OS skill。 |
+| `byte-discuss` | 讨论和澄清需求，自动询问不清楚的需求点和确认项，不写代码。 |
 | `byte-start` | 初始化 `.byte-os/`，理解想法，创建产品基础上下文。 |
 | `byte-research` | 搜索竞品、市场信号、定价、趋势和用户抱怨。 |
 | `byte-shape` | 定义定位、MVP、范围、UX、技术方向和路线图。 |
@@ -124,6 +125,7 @@ Your ByteDance 会把项目上下文写入：
   PRODUCT_SPEC.md
   UX_SPEC.md
   TECH_SPEC.md
+  DISCUSSION.md
   AUTO_RUN.md
   CODEBASE_MAP.md
   HARNESS.md
@@ -145,6 +147,12 @@ Your ByteDance 会把项目上下文写入：
 
 ```text
 $byte-do 我想做一个面向大学生的 AI 学习助手
+```
+
+先讨论需求，不写代码：
+
+```text
+$byte-discuss 我想做一个面向大学生的 AI 学习助手，先帮我问清楚需求
 ```
 
 一键跑完整流程：
@@ -285,6 +293,7 @@ byte-auto
 | Skill | Purpose |
 |---|---|
 | `byte-do` | Natural-language router for the Byte OS suite. |
+| `byte-discuss` | Discuss and clarify requirements, ask unclear requirement questions, and confirm scope without writing code. |
 | `byte-start` | Initialize `.byte-os/`, understand the idea, and create product context. |
 | `byte-research` | Research competitors, market signals, pricing, trends, and user complaints. |
 | `byte-shape` | Define positioning, MVP, scope, UX, technical direction, and roadmap. |
@@ -316,6 +325,7 @@ Your ByteDance writes state into:
   PRODUCT_SPEC.md
   UX_SPEC.md
   TECH_SPEC.md
+  DISCUSSION.md
   AUTO_RUN.md
   CODEBASE_MAP.md
   HARNESS.md
@@ -337,6 +347,12 @@ Start from an idea:
 
 ```text
 $byte-do I want to build an AI study assistant for university students
+```
+
+Discuss requirements before writing code:
+
+```text
+$byte-discuss I want to build an AI study assistant for university students. Ask what is unclear first.
 ```
 
 Run the full workflow automatically:
