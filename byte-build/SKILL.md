@@ -50,6 +50,8 @@ byte-build --all
 
 Execute all waves until plans complete or a blocker appears.
 
+In `byte-auto`, `byte-build --all` is not allowed to be the final stop unless all plans are complete or a hard blocker has been recorded. If a plan is blocked because it is underspecified, missing a scoped command, or needs repair after a failed check, return control to `byte-auto` with the exact repair action so auto mode can re-plan, fix, and retry.
+
 ## Execution Rules
 
 - Inspect the repository before editing.
@@ -65,6 +67,7 @@ Execute all waves until plans complete or a blocker appears.
 - If subagents are not authorized or unavailable, execute locally but still preserve role ownership and exploration summaries in plan logs.
 - Mark a plan `in_progress` before work and `complete` only after verification.
 - Mark `blocked` with a clear reason when execution cannot continue.
+- In auto mode, distinguish hard blockers from fixable blockers. Fixable blockers should feed back into planning, repair, iteration, or another `byte-build --all` pass.
 - Run the most relevant tests, linters, type checks, builds, or manual verification available.
 - Prefer scoped commands recorded in the plan or module context files over full-repo commands.
 - Avoid generated files, dependency folders, vendored code, build outputs, and large artifacts unless the plan explicitly targets them.
@@ -141,3 +144,5 @@ Next recommended command: byte-build or byte-review
 ## Completion Criteria
 
 Build is complete when every v0 plan is complete and the product can be reviewed as a working deliverable or faithful prototype.
+
+In auto mode, partial wave completion is progress, not completion. Continue until every required plan is `complete`, or write a hard blocker with the blocked plan, reason, attempted fix, and exact user action required.

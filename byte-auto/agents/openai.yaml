@@ -1,4 +1,4 @@
 interface:
   display_name: "Your ByteDance Auto"
-  short_description: "Run from idea to delivery automatically."
-  default_prompt: "Use $byte-auto to take this product idea to a deliverable product."
+  short_description: "Run from idea to delivery without stopping at partial plans."
+  default_prompt: "Use $byte-auto to take this product idea to a deliverable product. Keep looping until plans are complete, review passes, delivery exists, and verification is recorded."

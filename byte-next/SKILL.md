@@ -7,6 +7,8 @@ description: Continue a Your ByteDance / Byte OS project by inferring and execut
 
 Next advances the project one step. It is the step-by-step mode companion to `byte-auto`.
 
+Do not use `byte-next` as a substitute for auto mode. If the user asks for one-click completion, all remaining tasks, "don't stop until done", or goal-like execution, route to `byte-auto` instead.
+
 ## Workflow
 
 1. Inspect `.byte-os/`.

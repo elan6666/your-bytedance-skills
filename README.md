@@ -86,7 +86,7 @@ byte-deliver
 byte-auto
 ```
 
-`byte-auto` 会跑同样的阶段，只是不中途等待用户逐步触发，并且默认至少迭代 3 轮。
+`byte-auto` 会跑同样的阶段，只是不中途等待用户逐步触发，并且默认至少迭代 3 轮。它应该像目标执行器一样持续循环：计划没完成、评审没通过、交付没生成时，不把“下一步命令”当作结束。
 
 ### Skill 列表
 
@@ -124,6 +124,7 @@ Your ByteDance 会把项目上下文写入：
   PRODUCT_SPEC.md
   UX_SPEC.md
   TECH_SPEC.md
+  AUTO_RUN.md
   CODEBASE_MAP.md
   HARNESS.md
   ROADMAP.md
@@ -183,6 +184,7 @@ $byte-users 这里是我们原型测试的用户访谈记录和录屏观察
 - `byte-build` 默认执行下一批依赖已满足的 wave，不是简单执行第一个 plan。
 - `byte-code-rules` 会约束写代码、评审和迭代：简单、克制、可追溯、可验证。
 - `byte-auto` 和逐步模式共享同一套阶段，只是自动连续执行。
+- `byte-auto` 是目标执行器，不是单次计划执行器；未完成 plans、未通过 review、未生成 delivery 时必须继续。
 - 现代竞品、价格、市场趋势或 “latest” 信息必须联网搜索并引用来源。
 - 每个阶段都应该更新或遵守当前 Objective、Key Results、决策记录和证据等级。
 - 现有仓库、大代码库或 monorepo 应先运行 `byte-codebase-harness`，让 Claude 和 Codex 共享可导航上下文。
@@ -276,7 +278,7 @@ Auto mode:
 byte-auto
 ```
 
-`byte-auto` runs the same stages as step-by-step mode, but continues without waiting after each stage and defaults to at least 3 iteration loops.
+`byte-auto` runs the same stages as step-by-step mode, but continues without waiting after each stage and defaults to at least 3 iteration loops. It should behave like a goal runner: unfinished plans, non-ship reviews, or missing delivery artifacts mean it keeps going instead of ending with a next command.
 
 ### Skill List
 
@@ -314,6 +316,7 @@ Your ByteDance writes state into:
   PRODUCT_SPEC.md
   UX_SPEC.md
   TECH_SPEC.md
+  AUTO_RUN.md
   CODEBASE_MAP.md
   HARNESS.md
   ROADMAP.md
@@ -373,6 +376,7 @@ $byte-users Here are user interview notes and session recordings from our protot
 - `byte-build` executes the next dependency-ready wave by default, not simply the first plan.
 - `byte-code-rules` constrains coding, review, and iteration to be simple, scoped, traceable, and verifiable.
 - `byte-auto` uses the same staged workflow as manual mode; it just runs the stages continuously.
+- `byte-auto` is a goal runner, not a single plan executor; incomplete plans, non-ship reviews, or missing delivery require continued execution.
 - Modern competitor, pricing, market, or "latest" claims require current web research and citations.
 - Every stage should update or respect the current Objective, Key Results, decision log, and evidence level.
 - Existing repositories, large codebases, or monorepos should run `byte-codebase-harness` before planning or building so Claude and Codex share navigable context.

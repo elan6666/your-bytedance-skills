@@ -55,7 +55,7 @@ Apply the first strong match:
 
 | User intent | Route |
 |---|---|
-| "one click", "auto", "do it all", "from idea to delivery" | `byte-auto` |
+| "one click", "auto", "do it all", "from idea to delivery", "all tasks", "don't stop until done", "goal-like execution", "一键完成", "所有任务", "不完成不停" | `byte-auto` |
 | "start", "new product", "from zero", no `.byte-os/` | `byte-start` |
 | "research", "competitors", "benchmark", "pricing", "market" | `byte-research` |
 | "shape", "MVP", "positioning", "scope", "flows", "design product" | `byte-shape` |
