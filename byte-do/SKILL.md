@@ -1,6 +1,6 @@
 ---
 name: byte-do
-description: Route natural-language product work to the right Your ByteDance / Byte OS skill, decide whether goal mode is appropriate, and execute the matching workflow. Use when the user asks to start, discuss, continue, research, shape, plan, build, review, iterate, inspect status, analyze real users, auto-complete, or deliver a product using a ByteDance-inspired product squad.
+description: Route natural-language product work to the right Your ByteDance / Byte OS skill, decide whether goal mode or subagent mode is appropriate, and execute the matching workflow. Use when the user asks to start, discuss, continue, research, shape, plan, build, review, iterate, inspect status, analyze real users, auto-complete, parallelize, use subagents, or deliver a product using a ByteDance-inspired product squad.
 ---
 
 # Byte Do
@@ -61,7 +61,8 @@ Before routing:
    - Do not route ordinary "brainstorm", "idea", or "expand this" language to `byte-brainstorm`; use `byte-discuss` or `byte-shape` unless the user explicitly names the skill.
 2. Inspect `.byte-os/` when present.
 3. Decide whether Codex **Pursue Goal** mode should be used.
-4. Route and execute the workflow.
+4. Decide whether **Subagent mode** should be used.
+5. Route and execute the workflow.
 
 ## Goal Mode Decision
 
@@ -100,6 +101,41 @@ Deliver <requested outcome> with Byte OS planning, execution, review, iteration,
 ```
 
 Do not claim goal mode is enabled unless the tool or UI state confirms it.
+
+## Subagent Mode Decision
+
+Use subagent mode to split exploration, implementation, review, QA, research, or product work across independent scopes when the platform supports actual subagents. Subagent mode is for parallel speed and context isolation, not for decorative role-play.
+
+Set `Subagent mode` to `on` when at least one of these is true:
+
+- The route is `byte-auto`.
+- The user explicitly asks for "subagent", "subagents", "parallel agents", "multi-agent", "team execution", "并行", "子代理", or "多代理".
+- Existing plans contain dependency-ready work with disjoint files, directories, services, screens, or artifacts.
+- The request spans multiple independent tracks, such as research + UX + engineering + QA, or frontend + backend + data.
+- A large or unfamiliar codebase needs read-only exploration across several subsystems before editing.
+- A completed build needs independent review across acceptance criteria, regressions, UI, tests, and delivery readiness.
+
+Set `Subagent mode` to `suggested` when the task looks parallelizable but actual subagent authorization or platform support is unclear. Continue with the safest single-agent workflow and include a recommended next action to enable subagents.
+
+Set `Subagent mode` to `off` for:
+
+- `byte-brainstorm`, `byte-discuss`, or `byte-status`
+- Small, single-file, single-answer, or explanation-only tasks
+- Tasks with overlapping write scopes that cannot be sequenced cleanly
+- Unresolved product decisions where parallel implementation would amplify the wrong assumption
+- Sensitive, destructive, credentialed, or externally irreversible actions
+
+Set `Subagent mode` to `unavailable` when subagents would help but the current environment has no subagent tool or cannot run them safely.
+
+When subagent mode is `on`:
+
+- Prefer read-only exploration subagents first for unfamiliar areas.
+- Assign implementation subagents only to disjoint file or directory scopes with explicit non-goals and verification.
+- Assign review subagents after implementation, not during overlapping edits.
+- The main agent keeps merge ownership, resolves conflicts, verifies outputs, and decides completion.
+- Write or update `.byte-os/SUBAGENTS.md` and `.byte-os/subagents/*.md` with scope, files inspected or changed, verification, result, risks, and handoff.
+
+Never let two subagents edit the same file unless a plan explicitly defines sequence and merge ownership.
 
 ## State-Aware Routing
 
@@ -171,7 +207,7 @@ After routing, execute the selected workflow. If the selected skill body is avai
 - `byte-iterate`: run structured improvement loops and write `.byte-os/iterations/iteration-N.md`.
 - `byte-status`: summarize current state and next action.
 - `byte-next`: infer and execute the next stage from `STATUS.md`.
-- `byte-auto`: run start, research, shape, plan, build, review, at least 3 iteration loops, and deliver.
+- `byte-auto`: run start, research, shape, plan, build, review, at least 3 iteration loops, and deliver; use subagent mode when the task can be split safely.
 - `byte-deliver`: write final delivery summary, run instructions, verification, and remaining risks.
 
 ## Recommended Next Menu
@@ -193,7 +229,7 @@ For goal-mode candidates, include one option that enables or confirms `追求目
 
 ## Multi-Agent Policy
 
-Byte OS is multi-role by design. Use actual subagents only when the user explicitly asks for multi-agent, parallel, team, or auto Byte OS execution and the platform allows it. Otherwise, emulate the project roles in one response and keep role output concise.
+Byte OS is multi-role by design. Use the Subagent Mode Decision above to decide whether actual subagents should run. If subagents are unavailable or unsafe for the current task, emulate the project roles in one response and keep role output concise.
 
 Core roles:
 
@@ -219,6 +255,7 @@ Always state:
 Routing: byte-*
 Reason: <one sentence>
 Goal mode: on | off | suggested | unavailable
+Subagent mode: on | off | suggested | unavailable
 State: <new / existing / blocked>
 Artifacts: <files created or updated>
 Next: <next command or workflow>

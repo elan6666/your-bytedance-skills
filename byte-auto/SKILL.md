@@ -51,11 +51,12 @@ Run:
 ```text
 enable Pursue Goal mode
 sync project goal
+decide Subagent mode
 byte-start
 byte-codebase-harness if working in an existing repo or large codebase
 byte-shape
 byte-plan
-byte-build --all
+byte-build --all with safe parallel subagent execution when available
 byte-review
 byte-iterate x N
 byte-review
@@ -82,7 +83,8 @@ After every stage, re-read `.byte-os/STATUS.md`, `.byte-os/plans/*.plan.md`, lat
 | Existing repo and harness missing or partial | Run `byte-codebase-harness` |
 | Product/UX/tech specs missing | Run `byte-shape` |
 | No executable plans | Run `byte-plan` |
-| Any plan is `pending`, `ready`, `in_progress`, or fixably `blocked` | Run `byte-build --all` |
+| Independent research, UX, engineering, QA, or review tracks are available | Use subagent mode if safe, then merge and verify |
+| Any plan is `pending`, `ready`, `in_progress`, or fixably `blocked` | Run `byte-build --all`, parallelizing disjoint ready plans when safe |
 | Build made no progress because a plan is underspecified | Repair the plan, then run `byte-build --all` again |
 | Latest review is missing | Run `byte-review` |
 | Latest review is `block` or `iterate` | Run `byte-iterate`, then `byte-build --all`, then `byte-review` |
@@ -108,6 +110,7 @@ Include:
 - Remaining plans
 - Review verdict
 - Iteration count
+- Subagent mode and active subagent scopes
 - Hard blockers, if any
 - Exact resume action
 
@@ -151,10 +154,50 @@ If the environment provides a way to create or update Codex goals, use it. If on
 
 After the goal is created or proposed, mirror the same objective in `.byte-os/STATUS.md` and `.byte-os/OKRS.md` so Byte OS can continue even if the goal feature is unavailable.
 
+## Subagent Mode
+
+`byte-auto` may use actual subagents automatically because auto mode is an end-to-end execution authorization. This does not authorize destructive actions, credential use, paid operations, or unsafe external side effects.
+
+Set `Subagent mode` to `on` when the current work has safe parallel boundaries:
+
+- Multiple ready plans in the same wave with no overlapping file or directory ownership.
+- Independent tracks such as research, product shaping, UX, engineering, QA, growth, or delivery documentation.
+- Large or unfamiliar codebases where read-only exploration can be split by subsystem.
+- Implementation steps marked `implementation_allowed` with explicit files, non-goals, acceptance criteria, and verification.
+- Review work that can be split by area, such as acceptance criteria, UI, tests, security, performance, or delivery readiness.
+
+Set `Subagent mode` to `off` when the work is small, sequential, ambiguous, destructive, sensitive, or has overlapping write scopes.
+
+Set `Subagent mode` to `unavailable` when actual subagents are useful but the platform cannot start them. In that case, keep the same task split in the plan and execute sequentially.
+
+When subagent mode is `on`:
+
+1. Create or update `.byte-os/SUBAGENTS.md` with the current subagent strategy.
+2. Start read-only exploration subagents before implementation when context is uncertain.
+3. Assign implementation subagents only to disjoint scopes and require a handoff.
+4. Assign review subagents after implementation or after each completed wave.
+5. Merge results through the main agent, run verification, and record the outcome in `.byte-os/BUILD_LOG.md`, `.byte-os/AUTO_RUN.md`, and `.byte-os/subagents/*.md`.
+
+Every subagent handoff must include:
+
+```text
+Scope:
+Allowed files or directories:
+Files inspected:
+Files changed:
+Verification run:
+Result:
+Risks:
+Handoff:
+```
+
+Never mark auto complete because subagents finished their slice. Auto completes only when the Auto Goal Contract is satisfied.
+
 ## Auto Mode Rules
 
 - Use `.byte-os/STATUS.md` as the source of truth.
 - Use `.byte-os/AUTO_RUN.md` as the auto-run ledger.
+- Use `.byte-os/SUBAGENTS.md` as the subagent strategy and run ledger when subagents are used or considered.
 - Use `.byte-os/OKRS.md` to keep work aligned to visible objectives and measurable key results.
 - Preserve every artifact the step-by-step mode would create.
 - Keep looping until the Auto Goal Contract is satisfied.
@@ -163,7 +206,7 @@ After the goal is created or proposed, mirror the same objective in `.byte-os/ST
 - Use `byte-users` only if real feedback evidence is provided.
 - Use current web search for modern competitor, pricing, or trend claims.
 - Apply `byte-code-rules` whenever auto mode plans, writes, reviews, or iterates on code.
-- Use actual subagents only when the user explicitly authorizes multi-agent or auto Byte OS execution and the platform allows it.
+- Use actual subagents when Subagent mode is `on` and the platform allows it; otherwise preserve the task split and run sequentially.
 - Stop only for hard blockers that cannot be safely inferred or repaired.
 - Be candid in logs: record weak assumptions, failed checks, and tradeoffs instead of hiding them.
 
@@ -194,6 +237,7 @@ Ensure these exist by the end:
 .byte-os/UX_SPEC.md
 .byte-os/TECH_SPEC.md
 .byte-os/AUTO_RUN.md
+.byte-os/SUBAGENTS.md
 .byte-os/CODEBASE_MAP.md
 .byte-os/HARNESS.md
 .byte-os/ROADMAP.md
