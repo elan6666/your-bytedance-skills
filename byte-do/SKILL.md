@@ -1,6 +1,6 @@
 ---
 name: byte-do
-description: Route natural-language product work to the right Your ByteDance / Byte OS skill and execute the matching workflow. Use when the user asks to start, continue, research, shape, plan, build, review, iterate, inspect status, analyze real users, auto-complete, or deliver a product using a ByteDance-inspired product squad.
+description: Route natural-language product work to the right Your ByteDance / Byte OS skill, decide whether goal mode is appropriate, and execute the matching workflow. Use when the user asks to start, discuss, continue, research, shape, plan, build, review, iterate, inspect status, analyze real users, auto-complete, or deliver a product using a ByteDance-inspired product squad.
 ---
 
 # Byte Do
@@ -37,6 +37,8 @@ Use `.byte-os/` in the current project root:
   UX_SPEC.md
   TECH_SPEC.md
   DISCUSSION.md
+  BRAINSTORM.md
+  AUTO_RUN.md
   CODEBASE_MAP.md
   HARNESS.md
   ROADMAP.md
@@ -48,7 +50,80 @@ Use `.byte-os/` in the current project root:
   subagents/
 ```
 
-If the directory does not exist, only `byte-start`, `byte-auto`, or a status explanation can proceed.
+If the directory does not exist, only `byte-brainstorm`, `byte-discuss`, `byte-start`, `byte-auto`, or a status explanation can proceed.
+
+## Preflight
+
+Before routing:
+
+1. Detect explicit skill invocation.
+   - If the user directly invokes `$byte-brainstorm` or explicitly says to use `byte-brainstorm`, route to `byte-brainstorm`.
+   - Do not route ordinary "brainstorm", "idea", or "expand this" language to `byte-brainstorm`; use `byte-discuss` or `byte-shape` unless the user explicitly names the skill.
+2. Inspect `.byte-os/` when present.
+3. Decide whether Codex **Pursue Goal** mode should be used.
+4. Route and execute the workflow.
+
+## Goal Mode Decision
+
+Use goal mode when the request is a multi-step outcome that should continue across planning, building, review, iteration, or delivery.
+
+Set `Goal mode` to `on` and turn on or create/sync a goal for:
+
+- `byte-auto`
+- "one click", "do it all", "don't stop until done", "all tasks", "from idea to delivery", "一键完成", "所有任务", "不完成不停"
+- A request with an explicit deliverable plus multiple phases, such as design + build + test, or plan + implement + review
+- Long-running project work where stopping after one step would be wrong
+- Resuming an existing `.byte-os/` project whose next action spans multiple incomplete artifacts
+
+Set `Goal mode` to `suggested` when the request is probably multi-step but the user did not clearly ask for continuous execution. In this case, explain why goal mode would help and continue with the safest current workflow unless the user confirms auto execution.
+
+Set `Goal mode` to `off` for:
+
+- `byte-brainstorm`
+- `byte-discuss`
+- `byte-status`
+- Simple one-step research, review, explanation, or inspection
+- Requests where the user explicitly says "just discuss", "only brainstorm", "don't write code", or "不要开始"
+
+Set `Goal mode` to `unavailable` when goal mode is appropriate but cannot be enabled or confirmed in the current environment.
+
+If goal mode should be used:
+
+- If a goal API/tool is available, create or update one concise goal.
+- If only the UI toggle is available, ask the user to enable `追求目标` before continuing.
+- If goal mode cannot be controlled, mirror the goal into `.byte-os/STATUS.md` and `.byte-os/OKRS.md` and continue with the right workflow.
+
+Goal template:
+
+```text
+Deliver <requested outcome> with Byte OS planning, execution, review, iteration, verification, and final handoff.
+```
+
+Do not claim goal mode is enabled unless the tool or UI state confirms it.
+
+## State-Aware Routing
+
+Use explicit user intent first. If the user asks to start, discuss, research, review, auto-complete, or explicitly invokes `$byte-brainstorm`, honor that.
+
+When intent is broad, such as "continue", "what now", "do the next thing", "help me with this project", or "继续", use `.byte-os/` state:
+
+| Project state | Route |
+|---|---|
+| No `.byte-os/` and no clear product idea | `byte-discuss` |
+| No `.byte-os/` and clear product idea | `byte-start` |
+| `BRAINSTORM.md` exists but no chosen direction | `byte-discuss` |
+| `DISCUSSION.md` exists but no `PRODUCT_SPEC.md` | `byte-shape` |
+| Existing repo and `HARNESS.md` missing or partial | `byte-codebase-harness` |
+| Specs missing | `byte-shape` |
+| Specs exist and no plan files | `byte-plan` |
+| Any plan is pending, ready, in_progress, or fixably blocked | `byte-build` |
+| Plans complete and no review | `byte-review` |
+| Latest review is block or iterate | `byte-iterate` |
+| Latest review is ship and no delivery | `byte-deliver` |
+| Delivery exists and real user evidence is provided | `byte-users` |
+| Delivery exists and no new input | `byte-status` |
+
+If a broad request maps to several possible next steps, prefer the one that advances the project toward delivery without skipping required state.
 
 ## Routing
 
@@ -56,6 +131,7 @@ Apply the first strong match:
 
 | User intent | Route |
 |---|---|
+| explicit `$byte-brainstorm` or explicit "use byte-brainstorm" | `byte-brainstorm` |
 | "one click", "auto", "do it all", "from idea to delivery", "all tasks", "don't stop until done", "goal-like execution", "一键完成", "所有任务", "不完成不停" | `byte-auto` |
 | "discuss", "clarify", "requirements discussion", "confirm scope", "unclear requirements", "don't write code yet", "讨论", "讨论需求", "先聊", "先别写代码", "确认需求", "不清楚的需求" | `byte-discuss` |
 | "start", "new product", "from zero", no `.byte-os/` | `byte-start` |
@@ -75,13 +151,14 @@ Apply the first strong match:
 
 If two routes are plausible, choose the route that advances the byte state. Ask one concise question only when choosing would be risky.
 
-`byte-brainstorm` is explicit-only and outside the normal workflow. Do not route to it from `byte-do`; the user must invoke `$byte-brainstorm` directly.
+`byte-brainstorm` is explicit-only and outside the normal workflow. Only route to it when the user explicitly invoked `$byte-brainstorm` or explicitly asked to use `byte-brainstorm`.
 
 ## Execution Rule
 
 After routing, execute the selected workflow. If the selected skill body is available in the environment, follow it. If it is not available, use this fallback:
 
 - `byte-start`: create `.byte-os/` and write project foundation files, including visible OKRs.
+- `byte-brainstorm`: expand a rough idea into multiple directions only when explicitly invoked; do not enter the normal workflow.
 - `byte-discuss`: clarify requirements, ask targeted questions, suggest defaults, and optionally write `.byte-os/DISCUSSION.md` without writing product code.
 - `byte-research`: browse current sources for market and competitor facts, cite links, write `RESEARCH.md` and `COMPETITORS.md`.
 - `byte-shape`: write product, UX, technical, and roadmap specs.
@@ -96,6 +173,23 @@ After routing, execute the selected workflow. If the selected skill body is avai
 - `byte-next`: infer and execute the next stage from `STATUS.md`.
 - `byte-auto`: run start, research, shape, plan, build, review, at least 3 iteration loops, and deliver.
 - `byte-deliver`: write final delivery summary, run instructions, verification, and remaining risks.
+
+## Recommended Next Menu
+
+When the selected workflow is not `byte-auto`, end with a short menu of useful next actions. Keep it concrete and omit irrelevant options.
+
+Examples:
+
+```text
+Recommended next:
+1. Continue clarifying: $byte-discuss <topic>
+2. Turn this into specs: $byte-shape
+3. Run one-click execution: $byte-auto <confirmed goal>
+```
+
+For explicit brainstorm output, recommend `byte-discuss`, `byte-start`, or `byte-shape`, but not `byte-auto` unless the user asked for one-click execution.
+
+For goal-mode candidates, include one option that enables or confirms `追求目标`.
 
 ## Multi-Agent Policy
 
@@ -124,9 +218,13 @@ Always state:
 ```text
 Routing: byte-*
 Reason: <one sentence>
+Goal mode: on | off | suggested | unavailable
 State: <new / existing / blocked>
 Artifacts: <files created or updated>
 Next: <next command or workflow>
+Recommended next:
+1. <option>
+2. <option>
 ```
 
 Keep the final user-facing summary short, but make the files complete enough for the next Byte OS step.

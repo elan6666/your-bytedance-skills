@@ -1,4 +1,4 @@
 interface:
   display_name: "Your ByteDance Do"
-  short_description: "Route work through the ByteDance-inspired Byte OS."
-  default_prompt: "Use $byte-do to route my product request through the Your ByteDance workflow."
+  short_description: "Route Byte OS work and decide goal mode."
+  default_prompt: "Use $byte-do to route my product request, decide whether Pursue Goal mode should be used, and execute the matching Your ByteDance workflow."

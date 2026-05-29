@@ -19,6 +19,7 @@ OKRS.md
 RESEARCH.md
 COMPETITORS.md
 USER_ASSUMPTIONS.md
+BRAINSTORM.md
 DISCUSSION.md
 PRODUCT_SPEC.md
 UX_SPEC.md
@@ -53,6 +54,7 @@ blocked
 6. Identify next action:
 
 - No `.byte-os/`: `byte-start`
+- `BRAINSTORM.md` exists but no chosen direction or specs: `byte-discuss`
 - Stage is discussing or `DISCUSSION.md` exists but no specs: `byte-shape`
 - Started but no specs: `byte-shape`
 - Existing codebase but no harness: `byte-codebase-harness`
@@ -77,6 +79,7 @@ Plans:
 Reviews:
 Iterations:
 Real user feedback:
+Brainstorm:
 Discussion:
 Harness:
 Subagents:

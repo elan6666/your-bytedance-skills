@@ -92,7 +92,7 @@ byte-auto
 
 | Skill | 作用 |
 |---|---|
-| `byte-do` | 自然语言入口，自动路由到合适的 Byte OS skill。 |
+| `byte-do` | 自然语言入口，自动路由到合适的 Byte OS skill，并判断是否需要开启目标模式。 |
 | `byte-brainstorm` | 显式调用的想法扩展模式，不在自动工作流里，不自动触发。 |
 | `byte-discuss` | 讨论和澄清需求，自动询问不清楚的需求点和确认项，不写代码。 |
 | `byte-start` | 初始化 `.byte-os/`，理解想法，创建产品基础上下文。 |
@@ -127,6 +127,7 @@ Your ByteDance 会把项目上下文写入：
   UX_SPEC.md
   TECH_SPEC.md
   DISCUSSION.md
+  BRAINSTORM.md
   AUTO_RUN.md
   CODEBASE_MAP.md
   HARNESS.md
@@ -299,7 +300,7 @@ byte-auto
 
 | Skill | Purpose |
 |---|---|
-| `byte-do` | Natural-language router for the Byte OS suite. |
+| `byte-do` | Natural-language router for the Byte OS suite that also decides whether Pursue Goal mode should be used. |
 | `byte-brainstorm` | Explicit-only idea expansion mode outside the automatic workflow. |
 | `byte-discuss` | Discuss and clarify requirements, ask unclear requirement questions, and confirm scope without writing code. |
 | `byte-start` | Initialize `.byte-os/`, understand the idea, and create product context. |
@@ -334,6 +335,7 @@ Your ByteDance writes state into:
   UX_SPEC.md
   TECH_SPEC.md
   DISCUSSION.md
+  BRAINSTORM.md
   AUTO_RUN.md
   CODEBASE_MAP.md
   HARNESS.md
