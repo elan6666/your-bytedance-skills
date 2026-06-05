@@ -20,8 +20,10 @@ Read available artifacts:
 .byte-os/OKRS.md
 .byte-os/CODEBASE_MAP.md
 .byte-os/HARNESS.md
+.byte-os/AGENTS_AUDIT.md
 .byte-os/plans/*.plan.md
 .byte-os/BUILD_LOG.md
+AGENTS.md and relevant module AGENTS.md files
 ```
 
 Inspect the actual product or code when available.
@@ -58,6 +60,10 @@ Check:
 - Which assumptions need an experiment or real user evidence?
 - Did coding work follow `byte-code-rules`: simple implementation, surgical diff, no unrelated refactors, explicit assumptions, and recorded verification?
 - For existing codebases, did the work use the right `AGENTS.md`/`CLAUDE.md`, scoped commands, codebase map, noise filters, and start directory?
+- Is root `AGENTS.md` lean, accurate, and pointer-oriented instead of becoming a long knowledge dump?
+- Do module `AGENTS.md` files exist only where they reduce navigation cost?
+- Are scoped commands, safe edit boundaries, generated/noisy paths, LSP hints, and subagent boundaries recorded for active areas?
+- Does `.byte-os/AGENTS_AUDIT.md` contain a recent review date and proposed updates?
 - If subagents were used, were their scopes isolated, factual, verified, and reviewed by the main agent before completion?
 
 ## Output
@@ -93,7 +99,7 @@ Tests, checks, or user evidence still missing
 Overengineering, broad unrelated edits, hidden assumptions, unverified success criteria, or cleanup risks
 
 # Harness Findings
-Missing or stale codebase maps, root-context bloat, unscoped commands, noisy generated paths, weak LSP guidance, or unsafe start directories
+Missing or stale codebase maps, missing/bloated/stale AGENTS.md files, unscoped commands, noisy generated paths, weak LSP guidance, unsafe start directories, or missing AGENTS_AUDIT.md
 
 # Subagent Findings
 Scope overlap, unreviewed handoffs, missing verification, exploratory edits, or unclear ownership

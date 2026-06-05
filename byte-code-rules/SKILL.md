@@ -36,9 +36,11 @@ This is the Byte OS engineering guardrail layer. It adapts the MIT-licensed Karp
    - Record what was verified and what remains unverified.
 
 5. Navigate large codebases deliberately.
-   - Read `AGENTS.md`, `CLAUDE.md`, `.byte-os/CODEBASE_MAP.md`, and `.byte-os/HARNESS.md` when they exist.
+   - Read `AGENTS.md`, `CLAUDE.md`, `.byte-os/CODEBASE_MAP.md`, `.byte-os/HARNESS.md`, and `.byte-os/AGENTS_AUDIT.md` when they exist.
+   - Build the applicable `AGENTS.md` context stack from repo root to the task's start directory before broad edits.
    - Start in the relevant module directory when the task is scoped; do not default to repo root for every search.
    - Use scoped test/lint/build commands from local context files or plan metadata.
+   - If `AGENTS.md` is stale, bloated, missing scoped commands, or missing safe edit boundaries for the touched area, record the gap and repair the harness before broad implementation.
    - Exclude generated files, build outputs, dependency folders, vendored code, and large artifacts unless they are the task target.
    - Prefer LSP or symbol-aware navigation when available; use `rg` and direct file reads as the reliable fallback.
    - Use read-only exploration summaries or subagents before editing unfamiliar subsystems.

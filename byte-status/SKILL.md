@@ -26,10 +26,13 @@ UX_SPEC.md
 TECH_SPEC.md
 CODEBASE_MAP.md
 HARNESS.md
+AGENTS_AUDIT.md
 ROADMAP.md
 BUILD_LOG.md
 DELIVERY.md
 ```
+
+Also check whether root `AGENTS.md` and relevant module `AGENTS.md` files exist when the project is an existing codebase.
 
 4. Inspect directories:
 
@@ -58,6 +61,7 @@ blocked
 - Stage is discussing or `DISCUSSION.md` exists but no specs: `byte-shape`
 - Started but no specs: `byte-shape`
 - Existing codebase but no harness: `byte-codebase-harness`
+- Existing codebase with missing, stale, or bloated `AGENTS.md`: `byte-codebase-harness`
 - Specs but no plans: `byte-plan`
 - Plans incomplete: `byte-build`
 - Build complete but no review: `byte-review`
@@ -82,6 +86,7 @@ Real user feedback:
 Brainstorm:
 Discussion:
 Harness:
+AGENTS.md:
 Subagents:
 Blockers:
 Next:

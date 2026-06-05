@@ -20,6 +20,8 @@ Read:
 .byte-os/DECISIONS.md
 .byte-os/CODEBASE_MAP.md
 .byte-os/HARNESS.md
+.byte-os/AGENTS_AUDIT.md
+AGENTS.md and relevant module AGENTS.md files
 ```
 
 If these are missing, run or recommend `byte-shape`.
@@ -37,6 +39,8 @@ If these are missing, run or recommend `byte-shape`.
 - Break every plan into explicit ordered steps: Step 1, Step 2, Step 3, etc.
 - Each step must state what to do, why it is needed, touched files or modules, expected output, and how to verify that step.
 - For existing codebases, use `.byte-os/CODEBASE_MAP.md` and `.byte-os/HARNESS.md` to choose the relevant start directory, applicable `CLAUDE.md`/`AGENTS.md`, and scoped commands.
+- Build an `AGENTS.md` context stack for each plan: root `AGENTS.md`, then the nearest module `AGENTS.md` files that apply to `start_directory`.
+- If a plan touches an area with no scoped command guidance in `AGENTS.md`, `CODEBASE_MAP.md`, or `HARNESS.md`, add a harness repair step before implementation.
 - Prefer module-level test/lint/build commands over whole-repo commands when a plan touches one service or package.
 - Mark whether each plan or step can be delegated to a subagent. Delegate only when scope, files, and verification are clear.
 - Keep unrelated future ideas out of v0 plans.
@@ -55,6 +59,7 @@ owner_role: Tech Lead
 depends_on: []
 start_directory: .
 context_files: [AGENTS.md, CLAUDE.md]
+agents_context_stack: [AGENTS.md, <module>/AGENTS.md]
 subagent_policy: none | read_only_exploration | implementation_allowed
 ---
 
@@ -94,6 +99,14 @@ subagent_policy: none | read_only_exploration | implementation_allowed
 - Lint:
 - Typecheck:
 - Build:
+
+# AGENTS.md Context
+
+- Root context:
+- Module context:
+- Scoped command source:
+- Safe edit boundaries:
+- Missing or stale AGENTS.md notes:
 
 # Subagent Plan
 

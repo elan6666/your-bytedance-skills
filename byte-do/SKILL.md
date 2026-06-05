@@ -41,6 +41,7 @@ Use `.byte-os/` in the current project root:
   AUTO_RUN.md
   CODEBASE_MAP.md
   HARNESS.md
+  AGENTS_AUDIT.md
   ROADMAP.md
   DELIVERY.md
   plans/
@@ -173,7 +174,7 @@ Apply the first strong match:
 | "start", "new product", "from zero", no `.byte-os/` | `byte-start` |
 | "research", "competitors", "benchmark", "pricing", "market" | `byte-research` |
 | "shape", "MVP", "positioning", "scope", "flows", "design product" | `byte-shape` |
-| "large codebase", "monorepo", "CLAUDE.md", "AGENTS.md", "codebase map", "harness", "LSP", "Claude and Codex", "noise filters" | `byte-codebase-harness` |
+| "large codebase", "monorepo", "CLAUDE.md", "AGENTS.md", "agent.md", "Codex context", "codebase map", "harness", "LSP", "Claude and Codex", "noise filters" | `byte-codebase-harness` |
 | "plan", "break down", "roadmap to tasks", "plans" | `byte-plan` |
 | "build", "implement", "execute", "develop" | `byte-build` |
 | "code rules", "coding guidelines", "engineering rules", "Karpathy" | `byte-code-rules` |
@@ -198,7 +199,7 @@ After routing, execute the selected workflow. If the selected skill body is avai
 - `byte-discuss`: clarify requirements, ask targeted questions, suggest defaults, and optionally write `.byte-os/DISCUSSION.md` without writing product code.
 - `byte-research`: browse current sources for market and competitor facts, cite links, write `RESEARCH.md` and `COMPETITORS.md`.
 - `byte-shape`: write product, UX, technical, and roadmap specs.
-- `byte-codebase-harness`: create Claude/Codex context files, codebase map, scoped command matrix, noise filters, and harness status.
+- `byte-codebase-harness`: create Claude/Codex context files, root and module `AGENTS.md`, codebase map, scoped command matrix, noise filters, `AGENTS_AUDIT.md`, and harness status.
 - `byte-plan`: create dependency-aware plan files under `.byte-os/plans/`.
 - `byte-build`: execute the next dependency-ready plan wave, or the requested `--plan`, `--wave`, or `--all`.
 - `byte-code-rules`: apply simple, surgical, verifiable engineering behavior rules.

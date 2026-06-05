@@ -240,6 +240,7 @@ Ensure these exist by the end:
 .byte-os/SUBAGENTS.md
 .byte-os/CODEBASE_MAP.md
 .byte-os/HARNESS.md
+.byte-os/AGENTS_AUDIT.md
 .byte-os/ROADMAP.md
 .byte-os/plans/*.plan.md
 .byte-os/BUILD_LOG.md

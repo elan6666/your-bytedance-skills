@@ -20,6 +20,8 @@ Read:
 .byte-os/OKRS.md
 .byte-os/CODEBASE_MAP.md
 .byte-os/HARNESS.md
+.byte-os/AGENTS_AUDIT.md
+AGENTS.md and relevant module AGENTS.md files
 ```
 
 If no plans exist, run or recommend `byte-plan`.
@@ -55,7 +57,9 @@ In `byte-auto`, `byte-build --all` is not allowed to be the final stop unless al
 ## Execution Rules
 
 - Inspect the repository before editing.
-- For existing codebases, read the relevant `AGENTS.md`, `CLAUDE.md`, `.byte-os/CODEBASE_MAP.md`, and `.byte-os/HARNESS.md` before editing.
+- For existing codebases, read the relevant `AGENTS.md`, `CLAUDE.md`, `.byte-os/CODEBASE_MAP.md`, `.byte-os/HARNESS.md`, and `.byte-os/AGENTS_AUDIT.md` before editing.
+- Before editing a plan, build the context stack from the plan's `agents_context_stack` or by walking from `start_directory` up to repo root and reading applicable `AGENTS.md` files.
+- If `AGENTS.md` is missing, bloated, stale, or lacks scoped commands for the touched area, record the gap and run or recommend `byte-codebase-harness` before broad edits.
 - Start from the plan's `start_directory` or the most relevant module directory instead of always working from repo root.
 - Apply `byte-code-rules` for all coding work: think before coding, keep the implementation simple, make surgical changes, and verify against explicit success criteria.
 - Never revert user changes.
@@ -75,6 +79,7 @@ In `byte-auto`, `byte-build --all` is not allowed to be the final stop unless al
 - For frontend apps, start the dev server when appropriate and provide the URL after successful implementation.
 - Keep a candid build log: what worked, what failed, what changed, and which Key Results moved.
 - Log every subagent used, its scope, output artifact, files changed, verification, and handoff notes.
+- Log which `AGENTS.md` files were read and which scoped commands came from them.
 
 ## Wave Selection
 
@@ -128,6 +133,8 @@ Update:
 - Code rule notes: assumptions, scope decisions, and any intentional tradeoffs
 - Verification run
 - Subagents used and handoffs
+- AGENTS.md context stack used
+- AGENTS.md gaps or proposed updates
 - OKR or metric impact
 - Failures or blockers
 - Next wave
