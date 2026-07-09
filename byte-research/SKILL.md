@@ -70,6 +70,7 @@ Write or update:
 .byte-os/RESEARCH.md
 .byte-os/COMPETITORS.md
 .byte-os/DECISIONS.md
+.byte-os/STATUS.md
 ```
 
 `COMPETITORS.md` should include:
@@ -87,6 +88,10 @@ Write or update:
 - Product opportunities
 - Risks and caveats
 - Recommended impact on roadmap
+
+Update `STATUS.md` using the shared Byte OS state contract with
+`stage: researched`, `current_workflow: byte-research`, and the next safe
+workflow derived from the shared state resolver.
 
 ## Completion Criteria
 

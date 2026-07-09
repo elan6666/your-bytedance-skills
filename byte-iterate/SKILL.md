@@ -5,7 +5,9 @@ description: Run structured Your ByteDance / Byte OS iteration loops based on re
 
 # Byte Iterate
 
-Iterate turns evidence into product improvements. In auto mode it runs at least 3 loops. In manual mode it runs the requested number, or 1 loop if unspecified.
+Iterate turns evidence into product improvements. In auto mode it defaults to 3
+loops unless the user specifies a positive count. In manual mode it runs the
+requested number, or 1 loop if unspecified.
 
 ## Inputs
 
@@ -71,10 +73,12 @@ For each loop:
 If invoked by `byte-auto`, use:
 
 ```text
-iteration_count = max(user_requested_count, 3)
+iteration_count = user_requested_count if explicitly provided, otherwise 3
 ```
 
-If the user did not specify a count, default to 3 in auto mode.
+Respect an explicit positive count. Loop count never replaces the completion
+gates: each executed loop still needs evidence, verification, and a fresh review
+before delivery.
 
 Suggested automatic loop focus:
 
@@ -91,6 +95,10 @@ Write:
 ```text
 .byte-os/iterations/iteration-N.md
 ```
+
+Add frontmatter with `created_at`, the evidence source, and the originating
+review when applicable. This lets the shared state resolver distinguish a new
+iteration from the review that requested it.
 
 Include:
 
@@ -109,6 +117,10 @@ Update:
 .byte-os/ROADMAP.md
 .byte-os/STATUS.md
 ```
+
+Update `STATUS.md` using the shared Byte OS state contract with
+`stage: iterating`, `current_workflow: byte-iterate`, the new
+`iteration_count`, and `next_workflow: byte-review`.
 
 ## Completion Criteria
 

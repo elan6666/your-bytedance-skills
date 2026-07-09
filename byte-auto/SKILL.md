@@ -1,6 +1,6 @@
 ---
 name: byte-auto
-description: Run Your ByteDance / Byte OS from idea to deliverable Byte Automatically. Use when the user asks for one-click completion, end-to-end Byte Delivery, auto mode, "do all steps", "don't stop until done", or to go from discussion to a shippable product with a ByteDance-inspired project team and at least three automatic iteration loops.
+description: Run Your ByteDance / Byte OS from idea to deliverable Byte Automatically. Use when the user asks for one-click completion, end-to-end Byte Delivery, auto mode, "do all steps", "don't stop until done", or to go from discussion to a shippable product with a ByteDance-inspired project team and evidence-led automatic iteration loops.
 ---
 
 # Byte Auto
@@ -40,9 +40,12 @@ Collect or infer:
 - Target user
 - Delivery format
 - Constraints
-- Iteration count
+- Iteration count or completion gates
 
-Ask only for the product idea if it is missing. If iteration count is missing, default to 3. If a count below 3 is provided, use 3.
+Ask only for the product idea if it is missing. If iteration count is missing,
+default to 3. Respect an explicit positive iteration count; do not silently
+replace the user's count. Regardless of count, verification and review gates
+must still pass before delivery.
 
 ## End-to-End Flow
 
@@ -53,12 +56,13 @@ enable Pursue Goal mode
 sync project goal
 decide Subagent mode
 byte-start
+byte-research when external market evidence is relevant or missing
 byte-codebase-harness if working in an existing repo or large codebase
 byte-shape
 byte-plan
 byte-build --all with safe parallel subagent execution when available
 byte-review
-byte-iterate x N
+byte-iterate x N, stopping early only when the requested count is complete and review gates pass
 byte-review
 byte-deliver
 ```
@@ -66,7 +70,7 @@ byte-deliver
 Where:
 
 ```text
-N = max(user_requested_iterations, 3)
+N = user_requested_iterations when explicitly provided, otherwise 3
 ```
 
 If the project already has `.byte-os/`, resume from the earliest incomplete stage.
@@ -75,23 +79,23 @@ If the work happens inside an existing repository, monorepo, legacy codebase, or
 
 ## Auto Completion Loop
 
-After every stage, re-read `.byte-os/STATUS.md`, `.byte-os/plans/*.plan.md`, latest review, and delivery state. Then continue with the first matching action:
+After every stage, run the installed `byte-do` skill's shared resolver with
+`python3 <byte-do-skill>/scripts/byte_state.py next --root <project-root>`.
+Execute that workflow unless an Auto-specific gate below takes precedence:
 
-| State | Action |
-|---|---|
-| No `.byte-os/` | Run `byte-start` |
-| Existing repo and harness missing or partial | Run `byte-codebase-harness` |
-| Product/UX/tech specs missing | Run `byte-shape` |
-| No executable plans | Run `byte-plan` |
-| Independent research, UX, engineering, QA, or review tracks are available | Use subagent mode if safe, then merge and verify |
-| Any plan is `pending`, `ready`, `in_progress`, or fixably `blocked` | Run `byte-build --all`, parallelizing disjoint ready plans when safe |
-| Build made no progress because a plan is underspecified | Repair the plan, then run `byte-build --all` again |
-| Latest review is missing | Run `byte-review` |
-| Latest review is `block` or `iterate` | Run `byte-iterate`, then `byte-build --all`, then `byte-review` |
-| Fewer than required iterations have run | Run the next iteration loop |
-| Delivery missing | Run `byte-deliver` |
-| Verification missing or stale | Run focused verification, update `BUILD_LOG.md` and `DELIVERY.md` |
-| Terminal goal reached | Stop and report completion |
+1. If current external research is required and missing or stale, run
+   `byte-research` before shaping irreversible market-dependent decisions.
+2. If independent tracks are safe, use subagent mode, then merge and verify.
+3. If a plan is fixably blocked or underspecified, repair or re-plan it rather
+   than stopping.
+4. If fewer than the requested/default iterations have run after a current
+   review, run the next evidence-led iteration and then require a fresh review.
+5. If verification is missing or stale, run focused verification and update the
+   build and delivery records.
+6. Stop only when the terminal contract is satisfied or a hard blocker exists.
+
+Do not duplicate the lifecycle table here. Any change to routing order must be
+implemented in the shared state contract, helper, and behavior tests.
 
 Auto mode must repeat this loop until terminal completion or a hard blocker. The user should not need to manually type `byte-next`, `byte-build`, or `byte-review` during a normal auto run.
 
@@ -143,13 +147,13 @@ Then create, refresh, or propose a single Codex goal for the project.
 Use this goal to track the end-to-end outcome:
 
 ```text
-Deliver <product idea> for <target user> as <delivery format>, with Byte OS planning, build, review, at least 3 iteration loops, and final handoff.
+Deliver <product idea> for <target user> as <delivery format>, with Byte OS planning, build, review, evidence-led iteration loops, and final handoff.
 ```
 
 If the environment provides a way to create or update Codex goals, use it. If only the user-facing slash command is available, do not claim to have executed it. Instead, show the exact command for the user to run before continuing:
 
 ```text
-/goal Deliver <product idea> for <target user> as <delivery format>, with Byte OS planning, build, review, at least 3 iteration loops, and final handoff.
+/goal Deliver <product idea> for <target user> as <delivery format>, with Byte OS planning, build, review, evidence-led iteration loops, and final handoff.
 ```
 
 After the goal is created or proposed, mirror the same objective in `.byte-os/STATUS.md` and `.byte-os/OKRS.md` so Byte OS can continue even if the goal feature is unavailable.
@@ -212,7 +216,7 @@ Never mark auto complete because subagents finished their slice. Auto completes 
 
 ## Iteration Focus
 
-Run at least:
+Default focus when the user does not specify a loop count:
 
 1. Core completeness iteration
 2. UX and onboarding iteration
@@ -225,7 +229,7 @@ Additional loops:
 
 ## Artifacts
 
-Ensure these exist by the end:
+Ensure core artifacts exist by the end:
 
 ```text
 .byte-os/BYTE.md
@@ -237,10 +241,6 @@ Ensure these exist by the end:
 .byte-os/UX_SPEC.md
 .byte-os/TECH_SPEC.md
 .byte-os/AUTO_RUN.md
-.byte-os/SUBAGENTS.md
-.byte-os/CODEBASE_MAP.md
-.byte-os/HARNESS.md
-.byte-os/AGENTS_AUDIT.md
 .byte-os/ROADMAP.md
 .byte-os/plans/*.plan.md
 .byte-os/BUILD_LOG.md
@@ -249,6 +249,17 @@ Ensure these exist by the end:
 .byte-os/DELIVERY.md
 ```
 
+Conditional artifacts:
+
+- Require `CODEBASE_MAP.md`, `HARNESS.md`, and `AGENTS_AUDIT.md` only for an
+  existing codebase that needs a harness.
+- Require `SUBAGENTS.md` and `subagents/*.md` only when subagents were used or a
+  concrete subagent strategy was evaluated and recorded.
+
 ## Completion Criteria
 
-Auto is complete only when every required plan is complete, the deliverable exists, verification is recorded, at least 3 iterations have been run or explicitly hard-blocked, the latest review is `ship` or user-accepted, and `DELIVERY.md` explains how to use, test, and continue the product.
+Auto is complete only when every required plan is complete, the deliverable
+exists, verification is recorded, the requested/default iteration count is
+complete or a hard blocker is recorded, the latest review is current and
+`ship` or user-accepted, and `DELIVERY.md` explains how to use, test, and
+continue the product.

@@ -40,12 +40,15 @@ Useful optional details:
 - Record assumptions and unknowns.
 - Draft an Objective and 3-5 measurable Key Results.
 
-3. Research the market:
+3. Bootstrap market context:
 
-- Use current web search for competitor, pricing, trend, and market claims.
+- Use current web search for competitor, pricing, trend, and market claims that
+  materially affect the foundation.
 - Prefer official websites, docs, changelogs, pricing pages, app stores, review sites, and credible articles.
 - Cite links in the research files.
 - Do not claim "latest" or current facts without checking current sources.
+- Keep this pass narrow. Use `byte-research` for a full comparison or research
+  refresh; `byte-auto` runs that stage when external evidence is relevant.
 
 4. Run the project-group foundation pass:
 
@@ -97,10 +100,14 @@ Write or update:
 
 `STATUS.md` must include:
 
+- `schema_version: 1` in YAML frontmatter
 - Mode: step or auto
+- Project kind: greenfield, existing_codebase, or unknown; do not infer it from
+  `.git/` alone
 - Stage: started
-- Current command: byte-start
-- Next recommended command: byte-shape
+- Current workflow: byte-start
+- Next workflow: byte-research when a full external evidence pass is needed,
+  otherwise byte-shape
 - Open blockers
 - Harness status if working in an existing repo
 - Last updated date

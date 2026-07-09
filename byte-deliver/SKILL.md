@@ -74,12 +74,15 @@ Include:
 # Real User Feedback Status
 ```
 
-Update `STATUS.md`:
+Update `STATUS.md` using the shared Byte OS state contract:
 
 ```text
-Stage: delivered
-Next recommended command: byte-users when real feedback exists, otherwise byte-iterate for planned improvements
+stage: delivered
+current_workflow: byte-deliver
+next_workflow: byte-status
 ```
+
+Do not route to `byte-users` until the user supplies real feedback evidence.
 
 ## Completion Criteria
 
