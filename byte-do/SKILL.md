@@ -61,9 +61,13 @@ Before routing:
    - If the user directly invokes `$byte-brainstorm` or explicitly says to use `byte-brainstorm`, route to `byte-brainstorm`.
    - Do not route ordinary "brainstorm", "idea", or "expand this" language to `byte-brainstorm`; use `byte-discuss` or `byte-shape` unless the user explicitly names the skill.
 2. Inspect `.byte-os/` when present.
-3. Decide whether Codex **Pursue Goal** mode should be used.
-4. Decide whether **Subagent mode** should be used.
-5. Route and execute the workflow.
+3. Read [references/state-contract.md](references/state-contract.md) for broad
+   requests such as "continue", "what now", or "status". Run
+   `scripts/byte_state.py next --root <project-root>` when the helper is
+   available instead of reimplementing state routing.
+4. Decide whether Codex **Pursue Goal** mode should be used.
+5. Decide whether **Subagent mode** should be used.
+6. Route and execute the workflow.
 
 ## Goal Mode Decision
 
@@ -142,25 +146,13 @@ Never let two subagents edit the same file unless a plan explicitly defines sequ
 
 Use explicit user intent first. If the user asks to start, discuss, research, review, auto-complete, or explicitly invokes `$byte-brainstorm`, honor that.
 
-When intent is broad, such as "continue", "what now", "do the next thing", "help me with this project", or "继续", use `.byte-os/` state:
+When intent is broad, such as "continue", "what now", "do the next thing",
+"help me with this project", or "继续", use the canonical routing order in
+`references/state-contract.md`. The state helper is authoritative when its
+result is consistent with explicit user intent and safety constraints.
 
-| Project state | Route |
-|---|---|
-| No `.byte-os/` and no clear product idea | `byte-discuss` |
-| No `.byte-os/` and clear product idea | `byte-start` |
-| `BRAINSTORM.md` exists but no chosen direction | `byte-discuss` |
-| `DISCUSSION.md` exists but no `PRODUCT_SPEC.md` | `byte-shape` |
-| Existing repo and `HARNESS.md` missing or partial | `byte-codebase-harness` |
-| Specs missing | `byte-shape` |
-| Specs exist and no plan files | `byte-plan` |
-| Any plan is pending, ready, in_progress, or fixably blocked | `byte-build` |
-| Plans complete and no review | `byte-review` |
-| Latest review is block or iterate | `byte-iterate` |
-| Latest review is ship and no delivery | `byte-deliver` |
-| Delivery exists and real user evidence is provided | `byte-users` |
-| Delivery exists and no new input | `byte-status` |
-
-If a broad request maps to several possible next steps, prefer the one that advances the project toward delivery without skipping required state.
+Do not maintain another routing table in this skill. If a new lifecycle state
+is introduced, update the state contract, helper, and tests together.
 
 ## Routing
 
@@ -207,8 +199,8 @@ After routing, execute the selected workflow. If the selected skill body is avai
 - `byte-users`: analyze only real feedback evidence; never simulate real users.
 - `byte-iterate`: run structured improvement loops and write `.byte-os/iterations/iteration-N.md`.
 - `byte-status`: summarize current state and next action.
-- `byte-next`: infer and execute the next stage from `STATUS.md`.
-- `byte-auto`: run start, research, shape, plan, build, review, at least 3 iteration loops, and deliver; use subagent mode when the task can be split safely.
+- `byte-next`: resolve and execute the next stage using the shared state contract.
+- `byte-auto`: run start, research, shape, plan, build, review, evidence-led iteration, and delivery; default to 3 iteration loops when the user does not specify a count.
 - `byte-deliver`: write final delivery summary, run instructions, verification, and remaining risks.
 
 ## Recommended Next Menu

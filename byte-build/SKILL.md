@@ -70,6 +70,8 @@ In `byte-auto`, `byte-build --all` is not allowed to be the final stop unless al
 - Use review subagents after implementation to independently check acceptance criteria, regressions, and missed scoped commands.
 - If subagents are not authorized or unavailable, execute locally but still preserve role ownership and exploration summaries in plan logs.
 - Mark a plan `in_progress` before work and `complete` only after verification.
+- Refresh the plan's `updated_at` timestamp whenever its status or verified
+  implementation changes so review freshness can be resolved deterministically.
 - Mark `blocked` with a clear reason when execution cannot continue.
 - In auto mode, distinguish hard blockers from fixable blockers. Fixable blockers should feed back into planning, repair, iteration, or another `byte-build --all` pass.
 - Run the most relevant tests, linters, type checks, builds, or manual verification available.
@@ -139,13 +141,12 @@ Update:
 - Failures or blockers
 - Next wave
 
-Update `STATUS.md`:
+Update `STATUS.md` using the shared Byte OS state contract:
 
 ```text
-Stage: building
-Current wave: <N>
-Plans complete: <X>/<Y>
-Next recommended command: byte-build or byte-review
+stage: building
+current_workflow: byte-build
+next_workflow: <shared resolver result>
 ```
 
 ## Completion Criteria

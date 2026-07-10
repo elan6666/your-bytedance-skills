@@ -55,6 +55,7 @@ id: 001
 title: Foundation Setup
 status: pending
 wave: 1
+updated_at: <ISO-8601 UTC timestamp>
 owner_role: Tech Lead
 depends_on: []
 start_directory: .
@@ -234,13 +235,12 @@ Write or update:
 .byte-os/ROADMAP.md
 ```
 
-Update `STATUS.md`:
+Update `STATUS.md` using the shared Byte OS state contract:
 
 ```text
-Stage: planned
-Plans total: <N>
-Plans complete: 0
-Next recommended command: byte-build
+stage: planned
+current_workflow: byte-plan
+next_workflow: byte-build
 ```
 
 ## Completion Criteria

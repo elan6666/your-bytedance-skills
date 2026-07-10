@@ -102,11 +102,12 @@ Write or update:
 - v1 improvements
 - Later opportunities
 
-Update `STATUS.md`:
+Update `STATUS.md` using the shared Byte OS state contract:
 
 ```text
-Stage: shaped
-Next recommended command: byte-plan
+stage: shaped
+current_workflow: byte-shape
+next_workflow: byte-plan
 ```
 
 ## Completion Criteria

@@ -74,6 +74,9 @@ Write:
 .byte-os/reviews/review-N.md
 ```
 
+Add frontmatter with `created_at` and `verdict`. A review is current only for
+build and iteration evidence that existed when the review was created.
+
 Include:
 
 ```text
@@ -108,12 +111,13 @@ Scope overlap, unreviewed handoffs, missing verification, exploratory edits, or 
 Next command
 ```
 
-Update `STATUS.md`:
+Update `STATUS.md` using the shared Byte OS state contract:
 
 ```text
-Stage: reviewed
-Review verdict: <ship|iterate|block>
-Next recommended command: byte-iterate or byte-deliver
+stage: reviewed
+current_workflow: byte-review
+review_verdict: <ship|iterate|block>
+next_workflow: <shared resolver result>
 ```
 
 ## Completion Criteria

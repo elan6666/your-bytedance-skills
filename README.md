@@ -28,7 +28,7 @@ Your own ByteDance for building products with Codex.
 - 按 execution wave 构建，而不是机械执行 plan 1、plan 2、plan 3。
 - 用 Karpathy-inspired 工程守则约束代码：先想清楚、保持简单、只做必要改动、验证成功标准。
 - 像跨职能项目组一样做产品、设计、技术、QA、增长评审。
-- 在交付前自动迭代至少 3 轮。
+- 自动模式默认迭代 3 轮，也尊重用户明确指定的正整数轮数。
 - 产品完成后，只基于真实用户证据分析反馈。
 - 输出交付说明、运行方式、验证结果和风险。
 
@@ -49,8 +49,8 @@ Your ByteDance 使用这些工作原则：
 ### 30 秒快速开始
 
 ```bash
-git clone https://github.com/elan6666/your-bytedance.git
-cd your-bytedance
+git clone https://github.com/elan6666/your-bytedance-skills.git
+cd your-bytedance-skills
 cp -r byte-* ~/.codex/skills/
 ```
 
@@ -86,7 +86,7 @@ byte-deliver
 byte-auto
 ```
 
-`byte-auto` 会跑同样的阶段，只是不中途等待用户逐步触发，并且默认至少迭代 3 轮。它应该像目标执行器一样持续循环：计划没完成、评审没通过、交付没生成时，不把“下一步命令”当作结束。
+`byte-auto` 会跑同样的阶段，只是不中途等待用户逐步触发。用户未指定时默认迭代 3 轮；用户明确指定正整数时尊重该数量。它应该像目标执行器一样持续循环：计划没完成、评审没通过、交付没生成时，不把“下一步命令”当作结束。
 
 ### Skill 列表
 
@@ -107,7 +107,7 @@ byte-auto
 | `byte-users` | 只分析产品完成后的真实用户证据，不模拟用户。 |
 | `byte-status` | 查看 Byte OS 当前状态、进度、阻塞和下一步。 |
 | `byte-next` | 根据 `.byte-os/` 状态自动推进下一步。 |
-| `byte-auto` | 从想法到交付自动跑完整流程，并至少迭代 3 轮。 |
+| `byte-auto` | 从想法到交付自动跑完整流程，默认进行 3 轮证据驱动迭代。 |
 | `byte-deliver` | 打包最终交付说明、运行方式、验证结果和风险。 |
 
 ### Byte State
@@ -142,6 +142,17 @@ Your ByteDance 会把项目上下文写入：
 ```
 
 这些文件让 skills 可以恢复上下文、记录决策、暴露 OKR、追踪计划和继续推进。
+
+`byte-do/references/state-contract.md` 定义统一状态契约，
+`byte-do/scripts/byte_state.py` 提供兼容旧 Markdown 状态的扫描、下一步解析、
+校验和更新命令。`byte-do`、`byte-next`、`byte-status` 和 `byte-auto` 共用这套
+状态机，避免多个路由表逐渐不一致。
+
+运行行为测试：
+
+```bash
+python3 -m unittest discover -s tests -v
+```
 
 ### 使用示例
 
@@ -236,7 +247,7 @@ All skill names use the `byte-*` prefix.
 - Build by execution waves instead of blindly running plan 1, plan 2, plan 3.
 - Apply Karpathy-inspired engineering rules: think first, keep code simple, make surgical edits, and verify success criteria.
 - Review the product like a cross-functional squad.
-- Run at least 3 automatic iteration loops before delivery.
+- Default to 3 automatic iteration loops while respecting an explicit positive count.
 - Analyze only real user evidence after the product exists.
 - Package delivery notes, run instructions, verification, and risks.
 
@@ -257,8 +268,8 @@ Your ByteDance applies these principles:
 ### 30-Second Quick Start
 
 ```bash
-git clone https://github.com/elan6666/your-bytedance.git
-cd your-bytedance
+git clone https://github.com/elan6666/your-bytedance-skills.git
+cd your-bytedance-skills
 cp -r byte-* ~/.codex/skills/
 ```
 
@@ -294,7 +305,7 @@ Auto mode:
 byte-auto
 ```
 
-`byte-auto` runs the same stages as step-by-step mode, but continues without waiting after each stage and defaults to at least 3 iteration loops. It should behave like a goal runner: unfinished plans, non-ship reviews, or missing delivery artifacts mean it keeps going instead of ending with a next command.
+`byte-auto` runs the same stages as step-by-step mode, but continues without waiting after each stage. It defaults to 3 loops when no count is provided and respects an explicit positive count. It should behave like a goal runner: unfinished plans, non-ship reviews, or missing delivery artifacts mean it keeps going instead of ending with a next command.
 
 ### Skill List
 
@@ -315,7 +326,7 @@ byte-auto
 | `byte-users` | Analyze real post-build user evidence only. It does not simulate users. |
 | `byte-status` | Show current Byte OS state, progress, blockers, and next action. |
 | `byte-next` | Infer and execute the next step from `.byte-os/` state. |
-| `byte-auto` | Run from idea to delivery automatically with at least 3 iterations. |
+| `byte-auto` | Run from idea to delivery automatically with 3 evidence-led iterations by default. |
 | `byte-deliver` | Package final delivery notes, run instructions, verification, and risks. |
 
 ### Byte State
@@ -350,6 +361,18 @@ Your ByteDance writes state into:
 ```
 
 These files let the skills resume context, record decisions, expose OKRs, track plans, and continue execution.
+
+`byte-do/references/state-contract.md` defines the shared lifecycle contract.
+`byte-do/scripts/byte_state.py` scans, routes, validates, and updates state while
+remaining compatible with legacy Markdown-only projects. `byte-do`,
+`byte-next`, `byte-status`, and `byte-auto` use this single resolver instead of
+maintaining divergent routing tables.
+
+Run the behavior tests with:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
 
 ### Examples
 

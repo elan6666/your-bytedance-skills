@@ -12,29 +12,27 @@ Do not use `byte-next` as a substitute for auto mode. If the user asks for one-c
 ## Workflow
 
 1. Inspect `.byte-os/`.
-2. Read `STATUS.md`.
-3. Determine the next workflow.
+2. Read the installed `byte-do` skill's `references/state-contract.md`.
+3. Run `python3 <byte-do-skill>/scripts/byte_state.py next --root
+   <project-root>` when the helper is available. Otherwise apply the state
+   contract manually.
 4. Check `OKRS.md` so the next step advances visible goals.
 5. Execute the workflow, not merely describe it, unless execution would be risky or requires missing input.
 6. If the workflow writes, reviews, refactors, or iterates on code, apply `byte-code-rules`.
 7. Update `STATUS.md`.
 
-## Decision Table
+## State Resolution
 
-| State | Next workflow |
-|---|---|
-| No `.byte-os/` | `byte-start` |
-| Stage is discussing or `DISCUSSION.md` exists but no `PRODUCT_SPEC.md` | `byte-shape` |
-| Project exists, no `PRODUCT_SPEC.md` | `byte-shape` |
-| Specs exist, no plan files | `byte-plan` |
-| Plans exist and incomplete | `byte-build` |
-| Plans complete, no review | `byte-review` |
-| Latest review verdict is `block` or `iterate` | `byte-iterate` |
-| Latest review verdict is `ship` and no delivery | `byte-deliver` |
-| Delivery exists and new real feedback is provided | `byte-users` |
-| Delivery exists and no new input | `byte-status` |
+The shared state resolver owns lifecycle ordering. In particular:
 
-If several are plausible, choose the one that moves the product toward delivery.
+- Existing codebases must complete the harness before planning or building.
+- An iteration or completed-plan update newer than the latest review routes to
+  `byte-review`, even when the older review verdict was `iterate` or `block`.
+- `byte-users` is selected only from explicit real user evidence, never merely
+  because delivery exists.
+
+Do not copy the canonical routing table into this skill. Update the shared
+contract and its behavior tests when lifecycle rules change.
 
 ## Safety
 

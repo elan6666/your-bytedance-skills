@@ -1,4 +1,4 @@
 interface:
   display_name: "Your ByteDance Research"
   short_description: "Research market signals for product decisions."
-  default_prompt: "Use -research to research competitors and market signals for this product."
+  default_prompt: "Use $byte-research to research competitors and market signals for this product."

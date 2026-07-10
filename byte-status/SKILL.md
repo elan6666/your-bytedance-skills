@@ -10,7 +10,12 @@ Status reports where the Your ByteDance project stands and what should happen ne
 ## Workflow
 
 1. Check whether `.byte-os/` exists.
-2. Read `STATUS.md` if present.
+2. Read the installed `byte-do` skill's `references/state-contract.md`, then run
+   `python3 <byte-do-skill>/scripts/byte_state.py scan --root <project-root>`
+   and `python3 <byte-do-skill>/scripts/byte_state.py next --root
+   <project-root>` when available.
+   Treat helper output as the normalized view while still inspecting the human
+   artifacts for meaning and blockers.
 3. Inspect core artifacts:
 
 ```text
@@ -54,20 +59,9 @@ complete
 blocked
 ```
 
-6. Identify next action:
-
-- No `.byte-os/`: `byte-start`
-- `BRAINSTORM.md` exists but no chosen direction or specs: `byte-discuss`
-- Stage is discussing or `DISCUSSION.md` exists but no specs: `byte-shape`
-- Started but no specs: `byte-shape`
-- Existing codebase but no harness: `byte-codebase-harness`
-- Existing codebase with missing, stale, or bloated `AGENTS.md`: `byte-codebase-harness`
-- Specs but no plans: `byte-plan`
-- Plans incomplete: `byte-build`
-- Build complete but no review: `byte-review`
-- Review says iterate or block: `byte-iterate`
-- Review says ship: `byte-deliver`
-- Real feedback provided: `byte-users`
+6. Identify the next action from the shared resolver. Do not maintain a separate
+   lifecycle decision table here. Explicit real feedback may select
+   `byte-users`; otherwise report the resolver result and reason.
 
 ## Output
 

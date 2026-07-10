@@ -221,11 +221,13 @@ Each exploration file must include:
 Update `STATUS.md`:
 
 ```text
-Harness: ready | partial | blocked
+harness_status: ready | partial | blocked
 Claude context: ready | partial | not configured
 Codex context: ready | partial | not configured
 AGENTS.md: ready | partial | missing | stale
-Next recommended command: byte-plan
+project_kind: existing_codebase
+current_workflow: byte-codebase-harness
+next_workflow: <shared resolver result>
 ```
 
 ## Rules

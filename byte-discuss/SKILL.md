@@ -82,12 +82,12 @@ When writing state, create or update:
 - Non-goals
 - Recommended next command
 
-Update `STATUS.md`:
+Update `STATUS.md` using the shared Byte OS state contract:
 
 ```text
-Stage: discussing
-Current command: byte-discuss
-Next recommended command: byte-start or byte-shape
+stage: discussing
+current_workflow: byte-discuss
+next_workflow: <shared resolver result>
 ```
 
 ## Handoff
