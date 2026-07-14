@@ -22,6 +22,10 @@ verification is recorded
 
 Do not stop just because one plan, one wave, or one iteration finished. Do not end with only "next command" while there are incomplete plans, unresolved review findings, or missing delivery artifacts.
 
+Parked items in `.byte-os/FUTURE.md` are explicitly outside this goal contract.
+They are not incomplete plans, unresolved findings, missing artifacts, or reasons
+to continue Auto. Never promote them without an explicit user request.
+
 Only pause for a hard blocker:
 
 - Missing credentials, account access, payment, hardware, or private data.
@@ -117,6 +121,7 @@ Include:
 - Subagent mode and active subagent scopes
 - Hard blockers, if any
 - Exact resume action
+- Parked future item count, labeled `excluded from Auto`, when `FUTURE.md` exists
 
 ## Goal Integration
 
@@ -203,6 +208,10 @@ Never mark auto complete because subagents finished their slice. Auto completes 
 - Use `.byte-os/AUTO_RUN.md` as the auto-run ledger.
 - Use `.byte-os/SUBAGENTS.md` as the subagent strategy and run ledger when subagents are used or considered.
 - Use `.byte-os/OKRS.md` to keep work aligned to visible objectives and measurable key results.
+- Ignore parked `.byte-os/FUTURE.md` items when calculating remaining work,
+  plan completion, iteration needs, review verdicts, or delivery readiness.
+- If the user records a future item during Auto, save it with `byte-future` and
+  immediately resume the current Auto workflow without expanding or executing it.
 - Preserve every artifact the step-by-step mode would create.
 - Keep looping until the Auto Goal Contract is satisfied.
 - Never treat "next recommended command" as the final answer in auto mode; execute it unless a hard blocker applies.
@@ -255,6 +264,7 @@ Conditional artifacts:
   existing codebase that needs a harness.
 - Require `SUBAGENTS.md` and `subagents/*.md` only when subagents were used or a
   concrete subagent strategy was evaluated and recorded.
+- `FUTURE.md` is optional and never required for Auto completion.
 
 ## Completion Criteria
 
@@ -263,3 +273,5 @@ exists, verification is recorded, the requested/default iteration count is
 complete or a hard blocker is recorded, the latest review is current and
 `ship` or user-accepted, and `DELIVERY.md` explains how to use, test, and
 continue the product.
+
+Parked future items do not change this completion decision.

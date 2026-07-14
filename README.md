@@ -10,8 +10,8 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/elan6666/your-bytedance-skills?style=flat-square&color=ff3b30)](https://github.com/elan6666/your-bytedance-skills/stargazers)
 [![Last commit](https://img.shields.io/github/last-commit/elan6666/your-bytedance-skills?style=flat-square&color=00a9c7)](https://github.com/elan6666/your-bytedance-skills/commits/main)
-![Codex Skills](https://img.shields.io/badge/Codex_Skills-17-101010?style=flat-square)
-![State tests](https://img.shields.io/badge/state_tests-17_passing-16a34a?style=flat-square)
+![Codex Skills](https://img.shields.io/badge/Codex_Skills-18-101010?style=flat-square)
+![State tests](https://img.shields.io/badge/state_tests-20_passing-16a34a?style=flat-square)
 
 </div>
 
@@ -26,7 +26,7 @@
 
 ## 项目简介
 
-**Your ByteDance Skills** 是一套面向 Codex 的产品开发工作流。它把产品、市场研究、UX、工程、QA、增长和交付组织成 17 个可组合的 `byte-*` skills，并用 `.byte-os/` 保存共享上下文。
+**Your ByteDance Skills** 是一套面向 Codex 的产品开发工作流。它把产品、市场研究、UX、工程、QA、增长和交付组织成 18 个可组合的 `byte-*` skills，并用 `.byte-os/` 保存共享上下文。
 
 它不是一个只会生成计划的提示词集合。`byte-auto` 会持续执行 **研究 → 塑形 → 计划 → 构建 → 评审 → 迭代 → 交付**，直到完成条件满足或遇到真正需要用户处理的硬阻塞。
 
@@ -95,6 +95,7 @@ flowchart LR
 |---|---|
 | [`byte-do`](byte-do/SKILL.md) | 自然语言总入口；根据意图和项目状态选择并执行工作流 |
 | [`byte-brainstorm`](byte-brainstorm/SKILL.md) | 显式调用的发散模式，不自动进入正式流程 |
+| [`byte-future`](byte-future/SKILL.md) | 记录暂时不做的未来想法；不进入目标、计划或自动完成追踪 |
 | [`byte-discuss`](byte-discuss/SKILL.md) | 澄清需求、范围、非目标和风险，不写产品代码 |
 | [`byte-start`](byte-start/SKILL.md) | 初始化 `.byte-os/`、目标、假设、决策和基础研究 |
 | [`byte-research`](byte-research/SKILL.md) | 搜索竞品、定价、趋势、替代方案和用户抱怨 |
@@ -150,6 +151,7 @@ flowchart LR
   ROADMAP.md            # 路线图
   BUILD_LOG.md          # 构建记录
   DELIVERY.md           # 交付说明
+  FUTURE.md             # 不纳入当前完成追踪的未来计划
   plans/                # 可执行计划
   reviews/              # 评审记录
   iterations/           # 迭代记录
@@ -179,6 +181,7 @@ python3 byte-do/scripts/byte_state.py validate --root /path/to/project
 ## 重要边界
 
 - `byte-users` 只处理真实用户证据，不会模拟访谈或编造反馈。
+- `byte-future` 只记录明确延期的想法；停放项不进入当前范围，也不会阻塞 `byte-auto`、评审或交付。
 - 现代竞品、价格、趋势和 “latest” 信息必须联网核实并引用来源。
 - 现有仓库或大型 monorepo 应先运行 `byte-codebase-harness`。
 - Subagent 只用于清晰、隔离、可验证的任务；主 agent 保留合并和最终验证责任。
@@ -190,7 +193,7 @@ python3 byte-do/scripts/byte_state.py validate --root /path/to/project
 python3 -m unittest discover -s tests -v
 ```
 
-当前仓库包含 **17 个状态转移回归测试**，覆盖旧格式兼容、harness 路由、计划状态、评审新鲜度、迭代复审、硬阻塞和交付判断。
+当前仓库包含 **20 个状态转移回归测试**，覆盖旧格式兼容、harness 路由、计划状态、评审新鲜度、迭代复审、未来计划隔离、硬阻塞和交付判断。
 
 ## 公开资料依据
 

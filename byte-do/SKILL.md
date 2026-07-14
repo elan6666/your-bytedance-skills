@@ -1,6 +1,6 @@
 ---
 name: byte-do
-description: Route natural-language product work to the right Your ByteDance / Byte OS skill, decide whether goal mode or subagent mode is appropriate, and execute the matching workflow. Use when the user asks to start, discuss, continue, research, shape, plan, build, review, iterate, inspect status, analyze real users, auto-complete, parallelize, use subagents, or deliver a product using a ByteDance-inspired product squad.
+description: Route natural-language product work to the right Your ByteDance / Byte OS skill, decide whether goal mode or subagent mode is appropriate, and execute the matching workflow. Use when the user asks to start, discuss, continue, research, shape, plan, build, review, iterate, record a future idea, inspect status, analyze real users, auto-complete, parallelize, use subagents, or deliver a product using a ByteDance-inspired product squad.
 ---
 
 # Byte Do
@@ -38,6 +38,7 @@ Use `.byte-os/` in the current project root:
   TECH_SPEC.md
   DISCUSSION.md
   BRAINSTORM.md
+  FUTURE.md
   AUTO_RUN.md
   CODEBASE_MAP.md
   HARNESS.md
@@ -51,7 +52,8 @@ Use `.byte-os/` in the current project root:
   subagents/
 ```
 
-If the directory does not exist, only `byte-brainstorm`, `byte-discuss`, `byte-start`, `byte-auto`, or a status explanation can proceed.
+If the directory does not exist, only `byte-brainstorm`, `byte-discuss`,
+`byte-future`, `byte-start`, `byte-auto`, or a status explanation can proceed.
 
 ## Preflight
 
@@ -87,6 +89,7 @@ Set `Goal mode` to `off` for:
 
 - `byte-brainstorm`
 - `byte-discuss`
+- `byte-future`
 - `byte-status`
 - Simple one-step research, review, explanation, or inspection
 - Requests where the user explicitly says "just discuss", "only brainstorm", "don't write code", or "不要开始"
@@ -124,7 +127,7 @@ Set `Subagent mode` to `suggested` when the task looks parallelizable but actual
 
 Set `Subagent mode` to `off` for:
 
-- `byte-brainstorm`, `byte-discuss`, or `byte-status`
+- `byte-brainstorm`, `byte-discuss`, `byte-future`, or `byte-status`
 - Small, single-file, single-answer, or explanation-only tasks
 - Tasks with overlapping write scopes that cannot be sequenced cleanly
 - Unresolved product decisions where parallel implementation would amplify the wrong assumption
@@ -161,6 +164,7 @@ Apply the first strong match:
 | User intent | Route |
 |---|---|
 | explicit `$byte-brainstorm` or explicit "use byte-brainstorm" | `byte-brainstorm` |
+| "future plan", "save for later", "parking lot", "not now", "以后做", "未来计划", "先记下来", "暂时不做" | `byte-future` |
 | "one click", "auto", "do it all", "from idea to delivery", "all tasks", "don't stop until done", "goal-like execution", "一键完成", "所有任务", "不完成不停" | `byte-auto` |
 | "discuss", "clarify", "requirements discussion", "confirm scope", "unclear requirements", "don't write code yet", "讨论", "讨论需求", "先聊", "先别写代码", "确认需求", "不清楚的需求" | `byte-discuss` |
 | "start", "new product", "from zero", no `.byte-os/` | `byte-start` |
@@ -188,6 +192,7 @@ After routing, execute the selected workflow. If the selected skill body is avai
 
 - `byte-start`: create `.byte-os/` and write project foundation files, including visible OKRs.
 - `byte-brainstorm`: expand a rough idea into multiple directions only when explicitly invoked; do not enter the normal workflow.
+- `byte-future`: record a parked item in `FUTURE.md`; never add it to current plans, Auto work, review blockers, or delivery requirements.
 - `byte-discuss`: clarify requirements, ask targeted questions, suggest defaults, and optionally write `.byte-os/DISCUSSION.md` without writing product code.
 - `byte-research`: browse current sources for market and competitor facts, cite links, write `RESEARCH.md` and `COMPETITORS.md`.
 - `byte-shape`: write product, UX, technical, and roadmap specs.

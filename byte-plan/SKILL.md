@@ -43,7 +43,9 @@ If these are missing, run or recommend `byte-shape`.
 - If a plan touches an area with no scoped command guidance in `AGENTS.md`, `CODEBASE_MAP.md`, or `HARNESS.md`, add a harness repair step before implementation.
 - Prefer module-level test/lint/build commands over whole-repo commands when a plan touches one service or package.
 - Mark whether each plan or step can be delegated to a subagent. Delegate only when scope, files, and verification are clear.
-- Keep unrelated future ideas out of v0 plans.
+- Never pull parked entries from `.byte-os/FUTURE.md` into scope, dependencies,
+  acceptance criteria, or verification. Only an explicitly promoted entry may
+  enter planning through the normal discuss, research, or shape workflow.
 
 ## Plan File Format
 

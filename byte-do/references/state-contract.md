@@ -63,25 +63,42 @@ fallback. An iteration or completed-plan update newer than the latest review
 means the next workflow is `byte-review`, even if the older review said
 `iterate` or `block`.
 
+## Future Exclusion Contract
+
+`.byte-os/FUTURE.md` is a parking lot, not active state.
+
+- Parked `FTR-*` items do not belong to the current Objective, specs, roadmap
+  scope, plans, waves, completion percentage, review findings, iteration input,
+  Auto goal, delivery gaps, or next-workflow resolution.
+- The existence, count, age, or content of parked items must never keep
+  `byte-auto` running or change a `ship` verdict.
+- `byte-status` may report parked/promoted/rejected counts for visibility, but
+  its next action comes from active state only.
+- When `FUTURE.md` is the only Byte OS artifact, route to `byte-status`; do not
+  initialize, shape, or build a product from parked ideas.
+- Only an explicit user request may mark an item `promoted`. Promotion then
+  enters the normal workflow through discussion, research, or shaping.
+
 ## Canonical Routing Order
 
 Apply the first matching rule:
 
 1. Missing `.byte-os/` -> `byte-start`.
-2. A recorded hard blocker -> `byte-status` so the exact required user or
+2. Only `FUTURE.md` exists -> `byte-status`; no active project has started.
+3. A recorded hard blocker -> `byte-status` so the exact required user or
    external action is reported without retrying fixable workflows.
-3. Unresolved brainstorm or discussion without specs -> `byte-discuss` or
+4. Unresolved brainstorm or discussion without specs -> `byte-discuss` or
    `byte-shape`.
-4. `project_kind: existing_codebase` with an incomplete harness ->
+5. `project_kind: existing_codebase` with an incomplete harness ->
    `byte-codebase-harness`.
-5. Missing product, UX, or technical specs -> `byte-shape`.
-6. Missing plans -> `byte-plan`.
-7. Any incomplete plan -> `byte-build`.
-8. Missing review, or build/iteration evidence newer than the latest review ->
+6. Missing product, UX, or technical specs -> `byte-shape`.
+7. Missing plans -> `byte-plan`.
+8. Any incomplete plan -> `byte-build`.
+9. Missing review, or build/iteration evidence newer than the latest review ->
    `byte-review`.
-9. Latest current review is `iterate` or `block` -> `byte-iterate`.
-10. Latest current review is `ship` and delivery is missing -> `byte-deliver`.
-11. Delivery exists -> `byte-status`, unless the user explicitly supplies real
+10. Latest current review is `iterate` or `block` -> `byte-iterate`.
+11. Latest current review is `ship` and delivery is missing -> `byte-deliver`.
+12. Delivery exists -> `byte-status`, unless the user explicitly supplies real
     user evidence and invokes `byte-users`.
 
 Explicit user intent can select a safe workflow directly. It must not override

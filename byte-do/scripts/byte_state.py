@@ -147,6 +147,21 @@ def _review_verdict(event: dict[str, Any] | None) -> str | None:
     return None
 
 
+def _future_counts(path: Path) -> dict[str, int]:
+    counts = {"parked": 0, "promoted": 0, "rejected": 0, "unknown": 0}
+    if not path.exists():
+        return counts
+    text = path.read_text(encoding="utf-8")
+    entries = re.findall(
+        r"(?ms)^##\s+FTR-\d+\b.*?(?=^##\s+FTR-\d+\b|\Z)", text
+    )
+    for entry in entries:
+        match = re.search(r"(?im)^\s*-\s*Status:\s*(\w+)\s*$", entry)
+        status = match.group(1).lower() if match else "unknown"
+        counts[status if status in counts else "unknown"] += 1
+    return counts
+
+
 def scan(root: Path) -> dict[str, Any]:
     root = root.resolve()
     state_dir = root / ".byte-os"
@@ -188,6 +203,8 @@ def scan(root: Path) -> dict[str, Any]:
             "DELIVERY.md",
             "DISCUSSION.md",
             "BRAINSTORM.md",
+            "FUTURE.md",
+            "STATUS.md",
         ]
     }
     latest_plan_time = max((plan["time"] for plan in plans), default=0.0)
@@ -204,6 +221,7 @@ def scan(root: Path) -> dict[str, Any]:
             value: sum(plan["status"] == value for plan in plans)
             for value in sorted(PLAN_STATUSES)
         },
+        "future_counts": _future_counts(state_dir / "FUTURE.md"),
         "latest_review": {
             "path": review["path"],
             "time": latest_review_time,
@@ -230,6 +248,25 @@ def next_workflow(state: dict[str, Any]) -> tuple[str, str]:
 
     status = state["status"]
     artifacts = state["artifacts"]
+    future_only = (
+        artifacts["FUTURE.md"]
+        and not artifacts["STATUS.md"]
+        and not artifacts["BYTE.md"]
+        and not state["plans"]
+        and not any(
+            artifacts[name]
+            for name in [
+                "PRODUCT_SPEC.md",
+                "UX_SPEC.md",
+                "TECH_SPEC.md",
+                "DISCUSSION.md",
+                "BRAINSTORM.md",
+                "DELIVERY.md",
+            ]
+        )
+    )
+    if future_only:
+        return "byte-status", "Only parked future items exist; no active project has started"
     if status.get("hard_blocked") is True or status.get("stage") == "blocked":
         return "byte-status", "A hard blocker requires explicit user or external action"
     specs_complete = all(

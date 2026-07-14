@@ -23,6 +23,9 @@ Useful optional details:
 
 1. Create `.byte-os/` if missing:
 
+   If `.byte-os/FUTURE.md` already exists, preserve it unchanged. Its presence
+   does not initialize, scope, or activate those parked ideas.
+
 ```text
 .byte-os/
   plans/

@@ -37,6 +37,9 @@ Verify:
 - Review verdict allows delivery, or risks are explicitly accepted.
 - Real user feedback is not claimed unless `byte-users` ran on real evidence.
 - Objective and Key Results status are summarized honestly.
+- Parked entries in `.byte-os/FUTURE.md` are excluded from remaining work,
+  delivery risks, known gaps, and completion. They may be summarized only as
+  an optional non-blocking count.
 
 For a web app or app requiring a server, start the dev server when appropriate and provide the local URL. If opening a static HTML file is enough, provide the absolute file path.
 
@@ -87,3 +90,4 @@ Do not route to `byte-users` until the user supplies real feedback evidence.
 ## Completion Criteria
 
 Delivery is complete when the user can run or inspect the result and understands what is complete, what is risky, and what to do next.
+Parked future entries never prevent delivery.

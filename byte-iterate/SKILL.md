@@ -26,6 +26,10 @@ Read available evidence:
 
 Real user feedback must come from `byte-users` or user-provided materials. If none exists, label the iteration as based on internal review and research, not real users.
 
+Do not use parked entries from `.byte-os/FUTURE.md` as iteration inputs or
+unfinished work. Only entries explicitly promoted through the normal workflow
+may influence an iteration.
+
 ## Iteration Loop
 
 For each loop:
@@ -124,4 +128,4 @@ Update `STATUS.md` using the shared Byte OS state contract with
 
 ## Completion Criteria
 
-An iteration is complete when changes are made or explicitly deferred, verification is recorded, and the next action is clear.
+An iteration is complete when changes are made or explicitly deferred, verification is recorded, and the next action is clear. Deferring active work does not automatically create or activate a future entry; use `byte-future` only when the user explicitly asks to park it.

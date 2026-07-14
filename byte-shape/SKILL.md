@@ -7,6 +7,10 @@ description: Shape a Your ByteDance / Byte OS project into product positioning, 
 
 Shape turns the foundation into a product that can be planned and built. It should reduce ambiguity, not expand it.
 
+Do not pull parked entries from `.byte-os/FUTURE.md` into the MVP, specs, or
+roadmap. Only the user's explicit promotion can return an entry to the active
+discuss, research, or shape workflow.
+
 ## Inputs
 
 Read:

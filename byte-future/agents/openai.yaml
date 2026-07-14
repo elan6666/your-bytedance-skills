@@ -1,0 +1,4 @@
+interface:
+  display_name: "Your ByteDance Future"
+  short_description: "Park ideas without adding them to current work."
+  default_prompt: "Use $byte-future to record this idea for later without adding it to plans, auto mode, review blockers, or delivery requirements."

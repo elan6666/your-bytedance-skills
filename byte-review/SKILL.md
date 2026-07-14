@@ -28,6 +28,10 @@ AGENTS.md and relevant module AGENTS.md files
 
 Inspect the actual product or code when available.
 
+Treat parked entries in `.byte-os/FUTURE.md` as outside the review baseline.
+They cannot become findings, verification gaps, required changes, or verdict
+blockers. A review may mention their count as non-blocking context only.
+
 ## Review Roles
 
 - Product Director: strategic fit and decision quality.
@@ -123,3 +127,4 @@ next_workflow: <shared resolver result>
 ## Completion Criteria
 
 Review is complete when there is a clear verdict, prioritized findings, and a next action.
+Parked future entries do not affect the verdict or completion decision.

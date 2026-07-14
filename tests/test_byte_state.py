@@ -152,6 +152,43 @@ class ByteStateTest(unittest.TestCase):
         self.write(".byte-os/DELIVERY.md", "# Delivery\n")
         self.assertEqual(self.next(), "byte-status")
 
+    def test_future_only_state_is_not_an_active_project(self):
+        self.write(
+            ".byte-os/FUTURE.md",
+            "# Future Plans\n\n## FTR-001\n\n- Status: parked\n",
+        )
+        self.assertEqual(self.next(), "byte-status")
+
+    def test_parked_future_does_not_change_delivery_route(self):
+        self.write(".byte-os/STATUS.md", "Stage: reviewed\n")
+        self.add_specs()
+        self.add_complete_plan(mtime=10)
+        self.write(
+            ".byte-os/reviews/review-1.md",
+            "# Verdict\nship\n",
+            mtime=20,
+        )
+        self.write(
+            ".byte-os/FUTURE.md",
+            "# Future Plans\n\n## FTR-001\n\n- Status: parked\n",
+            mtime=30,
+        )
+        self.assertEqual(self.next(), "byte-deliver")
+
+    def test_future_counts_are_informational(self):
+        self.write(
+            ".byte-os/FUTURE.md",
+            "# Future Plans\n\n"
+            "## FTR-001\n\n- Status: parked\n\n"
+            "## FTR-002\n\n- Status: promoted\n\n"
+            "## FTR-003\n\n- Status: rejected\n",
+        )
+        state = byte_state.scan(self.root)
+        self.assertEqual(
+            state["future_counts"],
+            {"parked": 1, "promoted": 1, "rejected": 1, "unknown": 0},
+        )
+
     def test_update_adds_schema_without_losing_body(self):
         self.write(".byte-os/STATUS.md", "# Status\n\nStage: started\n")
         byte_state.update(self.root, ["stage=shaped", "next_workflow=byte-plan"])

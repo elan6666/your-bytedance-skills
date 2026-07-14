@@ -30,6 +30,10 @@ The shared state resolver owns lifecycle ordering. In particular:
   `byte-review`, even when the older review verdict was `iterate` or `block`.
 - `byte-users` is selected only from explicit real user evidence, never merely
   because delivery exists.
+- Parked items in `.byte-os/FUTURE.md` are informational only. They never
+  select a lifecycle step, and `byte-next` must not promote them implicitly.
+- A project containing only `FUTURE.md` routes to `byte-status`; it is not an
+  initialized active project.
 
 Do not copy the canonical routing table into this skill. Update the shared
 contract and its behavior tests when lifecycle rules change.

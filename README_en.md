@@ -10,8 +10,8 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/elan6666/your-bytedance-skills?style=flat-square&color=ff3b30)](https://github.com/elan6666/your-bytedance-skills/stargazers)
 [![Last commit](https://img.shields.io/github/last-commit/elan6666/your-bytedance-skills?style=flat-square&color=00a9c7)](https://github.com/elan6666/your-bytedance-skills/commits/main)
-![Codex Skills](https://img.shields.io/badge/Codex_Skills-17-101010?style=flat-square)
-![State tests](https://img.shields.io/badge/state_tests-17_passing-16a34a?style=flat-square)
+![Codex Skills](https://img.shields.io/badge/Codex_Skills-18-101010?style=flat-square)
+![State tests](https://img.shields.io/badge/state_tests-20_passing-16a34a?style=flat-square)
 
 </div>
 
@@ -26,7 +26,7 @@
 
 ## Overview
 
-**Your ByteDance Skills** is a product-development workflow for Codex. It organizes product, market research, UX, engineering, QA, growth, and delivery into 17 composable `byte-*` skills, with shared context stored in `.byte-os/`.
+**Your ByteDance Skills** is a product-development workflow for Codex. It organizes product, market research, UX, engineering, QA, growth, and delivery into 18 composable `byte-*` skills, with shared context stored in `.byte-os/`.
 
 This is not a prompt collection that stops after producing a plan. `byte-auto` keeps running **research → shape → plan → build → review → iterate → deliver** until the completion gates pass or a genuine hard blocker requires user action.
 
@@ -95,6 +95,7 @@ Auto mode defaults to three evidence-led iterations. When the user explicitly su
 |---|---|
 | [`byte-do`](byte-do/SKILL.md) | Natural-language front door that selects and executes the right workflow |
 | [`byte-brainstorm`](byte-brainstorm/SKILL.md) | Explicit-only divergent ideation outside the committed workflow |
+| [`byte-future`](byte-future/SKILL.md) | Park ideas for later without adding them to goals, plans, or auto completion tracking |
 | [`byte-discuss`](byte-discuss/SKILL.md) | Clarify requirements, scope, non-goals, and risks without writing product code |
 | [`byte-start`](byte-start/SKILL.md) | Initialize `.byte-os/`, goals, assumptions, decisions, and foundation context |
 | [`byte-research`](byte-research/SKILL.md) | Research competitors, pricing, trends, substitutes, and user complaints |
@@ -150,6 +151,7 @@ The workflow stores project context in `.byte-os/` at the project root. This is 
   ROADMAP.md            # Product roadmap
   BUILD_LOG.md          # Build record
   DELIVERY.md           # Delivery handoff
+  FUTURE.md             # Parked future plans excluded from current completion
   plans/                # Executable plans
   reviews/              # Review records
   iterations/           # Iteration records
@@ -179,6 +181,7 @@ python3 byte-do/scripts/byte_state.py validate --root /path/to/project
 ## Important Boundaries
 
 - `byte-users` accepts real user evidence only. It does not simulate interviews or invent feedback.
+- `byte-future` records explicitly deferred ideas only; parked entries never block `byte-auto`, review, or delivery.
 - Modern competitor, pricing, trend, and “latest” claims require current web research and citations.
 - Existing repositories and large monorepos should run `byte-codebase-harness` first.
 - Subagents are used only for isolated, verifiable scopes; the main agent retains merge and final verification ownership.
@@ -190,7 +193,7 @@ python3 byte-do/scripts/byte_state.py validate --root /path/to/project
 python3 -m unittest discover -s tests -v
 ```
 
-The repository currently contains **17 state-transition regression tests** covering legacy state compatibility, harness routing, plan status, review freshness, post-iteration review, hard blockers, and delivery decisions.
+The repository currently contains **20 state-transition regression tests** covering legacy state compatibility, harness routing, plan status, review freshness, post-iteration review, future-plan isolation, hard blockers, and delivery decisions.
 
 ## Public Research Basis
 

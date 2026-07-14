@@ -57,6 +57,8 @@ In `byte-auto`, `byte-build --all` is not allowed to be the final stop unless al
 ## Execution Rules
 
 - Inspect the repository before editing.
+- Never implement parked entries from `.byte-os/FUTURE.md`. Build only active
+  plan scope; a future entry must be explicitly promoted and planned first.
 - For existing codebases, read the relevant `AGENTS.md`, `CLAUDE.md`, `.byte-os/CODEBASE_MAP.md`, `.byte-os/HARNESS.md`, and `.byte-os/AGENTS_AUDIT.md` before editing.
 - Before editing a plan, build the context stack from the plan's `agents_context_stack` or by walking from `start_directory` up to repo root and reading applicable `AGENTS.md` files.
 - If `AGENTS.md` is missing, bloated, stale, or lacks scoped commands for the touched area, record the gap and run or recommend `byte-codebase-harness` before broad edits.

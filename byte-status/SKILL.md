@@ -35,6 +35,7 @@ AGENTS_AUDIT.md
 ROADMAP.md
 BUILD_LOG.md
 DELIVERY.md
+FUTURE.md
 ```
 
 Also check whether root `AGENTS.md` and relevant module `AGENTS.md` files exist when the project is an existing codebase.
@@ -62,6 +63,9 @@ blocked
 6. Identify the next action from the shared resolver. Do not maintain a separate
    lifecycle decision table here. Explicit real feedback may select
    `byte-users`; otherwise report the resolver result and reason.
+7. If `FUTURE.md` exists, report parked, promoted, and rejected counts as
+   informational data. Label parked items as excluded from active scope,
+   blockers, completion, and next-step resolution.
 
 ## Output
 
@@ -82,6 +86,7 @@ Discussion:
 Harness:
 AGENTS.md:
 Subagents:
+Future plans: <counts; non-blocking and excluded>
 Blockers:
 Next:
 ```
