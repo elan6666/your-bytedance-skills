@@ -14,3 +14,7 @@ exists. Do not invent priority, deadlines, ownership, or success metrics.
 Do not research, expand, plan, or implement the item unless the user asks. Its
 existence must not block current completion. If the user later promotes it,
 handle it like a normal active request using the most appropriate Byte capability.
+
+## Source And Updates
+
+Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.

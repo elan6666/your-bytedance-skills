@@ -31,3 +31,7 @@ If direct evidence disproves a consequential prior assumption, add a concise
 entry to `.byte-os/LESSONS.md` with the correction, supporting evidence, and a
 future verification rule. Do not turn changing external facts into personal
 mistakes unless the earlier claim lacked appropriate verification.
+
+## Source And Updates
+
+Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.

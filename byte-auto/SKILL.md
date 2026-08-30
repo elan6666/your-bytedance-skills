@@ -66,3 +66,7 @@ or routine trial-and-error noise.
 Lead with the delivered result. Summarize meaningful changes, verification, and
 remaining limits. Do not end with a workflow command when safe in-scope work is
 still unfinished.
+
+## Source And Updates
+
+Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.

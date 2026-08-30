@@ -35,3 +35,7 @@ When failed verification exposes a reusable false assumption or the user correct
 the intended behavior, update `.byte-os/LESSONS.md` with the confirmed mistake,
 evidence, and prevention rule. Do not log every failed command or normal debugging
 step.
+
+## Source And Updates
+
+Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.

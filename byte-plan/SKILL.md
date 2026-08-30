@@ -43,3 +43,7 @@ otherwise prefer `.byte-os/PLAN.md` over many mandatory plan files.
 
 Planning is complete when another capable agent could begin safely without the
 plan pretending to eliminate all judgment.
+
+## Source And Updates
+
+Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.

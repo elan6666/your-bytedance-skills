@@ -79,3 +79,7 @@ discussion only or no file changes.
 
 Lead with the result. Mention routing, artifacts, or next commands only when they
 help the user understand or continue the work. Do not emit a fixed status template.
+
+## Source And Updates
+
+Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.

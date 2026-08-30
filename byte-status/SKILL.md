@@ -28,3 +28,7 @@ unless the user also asks to continue or repair it.
 
 Interpret legacy Byte OS artifacts as ordinary evidence; their recorded stage
 does not override explicit intent or live behavior.
+
+## Source And Updates
+
+Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.

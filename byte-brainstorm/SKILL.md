@@ -20,3 +20,7 @@ brainstormed possibilities into committed scope or implementation unless the
 user asks.
 
 Save the brainstorm only when requested or useful for later decision-making.
+
+## Source And Updates
+
+Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.

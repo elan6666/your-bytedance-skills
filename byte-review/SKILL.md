@@ -32,3 +32,7 @@ transition.
 When review evidence confirms a reusable mistake, false completion claim, or
 repeated requirement misunderstanding, create or update the matching entry in
 `.byte-os/LESSONS.md`. Record evidence and a prevention rule, not blame.
+
+## Source And Updates
+
+Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.
