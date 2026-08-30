@@ -1,4 +1,0 @@
-interface:
-  display_name: "Your ByteDance Code Rules"
-  short_description: "Apply simple, surgical, verifiable engineering rules."
-  default_prompt: "Use $byte-code-rules before writing, reviewing, or refactoring code."

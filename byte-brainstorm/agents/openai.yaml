@@ -1,4 +1,4 @@
 interface:
   display_name: "Your ByteDance Brainstorm"
-  short_description: "Explicit-only idea expansion outside the workflow."
-  default_prompt: "Use $byte-brainstorm to expand this rough idea into multiple product directions, bold alternatives, MVP shapes, and decision options without entering the normal workflow."
+  short_description: "Explore substantially different product directions."
+  default_prompt: "Use $byte-brainstorm to generate and compare distinct directions for this idea without committing to implementation."

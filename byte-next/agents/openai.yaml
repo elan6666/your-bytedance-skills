@@ -1,4 +1,0 @@
-interface:
-  display_name: "Your ByteDance Next"
-  short_description: "Advance the byte workflow one step."
-  default_prompt: "Use $byte-next to continue the Your ByteDance project."

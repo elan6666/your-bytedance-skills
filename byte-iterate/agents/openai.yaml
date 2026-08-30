@@ -1,4 +1,0 @@
-interface:
-  display_name: "Your ByteDance Iterate"
-  short_description: "Run evidence-led product iteration loops."
-  default_prompt: "Use $byte-iterate to improve the product through iteration loops."

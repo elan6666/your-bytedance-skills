@@ -1,4 +1,0 @@
-interface:
-  display_name: "Your ByteDance Deliver"
-  short_description: "Package final Byte Delivery artifacts."
-  default_prompt: "Use $byte-deliver to package this product for handoff."

@@ -1,38 +1,24 @@
-<div align="center">
-
-![Your ByteDance](assets/social-preview.jpg)
-
 # Your ByteDance Skills
 
-**你自己的产品小队，把一个想法持续推进到可交付产品。**
+![Your ByteDance social preview](assets/social-preview.webp)
 
-[中文](README.md) · [English](README_en.md)
+你自己的产品团队，powered by Codex skills。
 
-[![GitHub stars](https://img.shields.io/github/stars/elan6666/your-bytedance-skills?style=flat-square&color=ff3b30)](https://github.com/elan6666/your-bytedance-skills/stargazers)
-[![Last commit](https://img.shields.io/github/last-commit/elan6666/your-bytedance-skills?style=flat-square&color=00a9c7)](https://github.com/elan6666/your-bytedance-skills/commits/main)
-![Codex Skills](https://img.shields.io/badge/Codex_Skills-18-101010?style=flat-square)
-![State tests](https://img.shields.io/badge/state_tests-20_passing-16a34a?style=flat-square)
+> 受字节跳动工作方式启发，并非字节跳动官方项目，也与字节跳动无隶属关系。
 
-</div>
+Your ByteDance 是一组轻量 Codex skills，用来讨论、研究、规划、构建、评审和完成产品工作。它不要求每个项目遵循固定流水线，而是让模型根据目标、风险和实时证据选择真正有用的步骤。
 
-<table>
-  <tr>
-    <td align="center"><strong>🎯 从想法到范围</strong><br/>讨论需求、研究市场、定义 MVP</td>
-    <td align="center"><strong>🧭 上下文先行</strong><br/>OKR、决策、证据和状态都写入文件</td>
-    <td align="center"><strong>⚙️ 按波次执行</strong><br/>依赖就绪的计划可安全并行推进</td>
-    <td align="center"><strong>🔁 评审再迭代</strong><br/>验证、复审、修复，直到可以交付</td>
-  </tr>
-</table>
+## 核心理念
 
-## 项目简介
+- **结果优先**：完成用户要的结果，而不是完成流程。
+- **模型自主判断**：研究、计划、文档和迭代深度由任务决定。
+- **最小必要流程**：简单任务直接完成，复杂任务才增加结构。
+- **真实证据**：代码、测试、运行状态、当前来源和真实反馈优先于状态叙述。
+- **诚实交付**：明确验证结果、假设、失败和剩余限制。
 
-**Your ByteDance Skills** 是一套面向 Codex 的产品开发工作流。它把产品、市场研究、UX、工程、QA、增长和交付组织成 18 个可组合的 `byte-*` skills，并用 `.byte-os/` 保存共享上下文。
+不再默认要求：固定阶段、三轮迭代、OKR、角色扮演、完整 `.byte-os` 文档集、Harness 门禁或多文件计划。
 
-它不是一个只会生成计划的提示词集合。`byte-auto` 会持续执行 **研究 → 塑形 → 计划 → 构建 → 评审 → 迭代 → 交付**，直到完成条件满足或遇到真正需要用户处理的硬阻塞。
-
-> ByteDance-inspired, not ByteDance-official. 本项目与字节跳动没有隶属或官方关系。
-
-## 快速开始
+## 安装
 
 ```bash
 git clone https://github.com/elan6666/your-bytedance-skills.git
@@ -40,174 +26,81 @@ cd your-bytedance-skills
 cp -R byte-* ~/.codex/skills/
 ```
 
-Windows 用户将所有 `byte-*` 文件夹复制到：
+如果安装过旧版，请另外删除已废弃的旧 skill 目录；仅复制新版不会自动删除旧目录。
+
+## 快速使用
+
+让系统选择合适方式：
 
 ```text
-C:\Users\<you>\.codex\skills\
+$byte-do 帮我把这个产品想法推进到下一步
 ```
 
-重启 Codex 后，直接用自然语言调用总入口：
+端到端完成：
 
 ```text
-$byte-do 我想做一个面向大学生的 AI 学习助手
+$byte-auto 构建一个可运行的 AI 学习助手并完成验证
 ```
 
-或者一键执行完整流程：
+也可以直接调用一个具体能力：
 
 ```text
-$byte-auto Build a web app for solo founders to validate product ideas.
+$byte-discuss 讨论这个产品的 MVP 边界
+$byte-research 比较当前竞品和定价
+$byte-plan 为这个改动制定合适深度的计划
+$byte-build 实现并验证这个功能
+$byte-review 审查当前实现的关键问题
+$byte-status 核实项目真实进度
 ```
 
-以后更新本地 skills：
-
-```bash
-git pull
-cp -R byte-* ~/.codex/skills/
-```
-
-## 两种工作方式
-
-| 模式 | 适合场景 | 调用方式 |
-|---|---|---|
-| **逐步模式** | 希望每个阶段自己确认 | `$byte-start` → `$byte-shape` → `$byte-plan` → `$byte-build` |
-| **自动模式** | 已经明确目标，希望持续执行到交付 | `$byte-auto <目标>` |
-
-```mermaid
-flowchart LR
-    A[想法 Idea] --> B[研究 Research]
-    B --> C[塑形 Shape]
-    C --> D[计划 Plan]
-    D --> E[构建 Build]
-    E --> F[评审 Review]
-    F -->|iterate / block| G[迭代 Iterate]
-    G --> F
-    F -->|ship| H[交付 Deliver]
-    H --> I[真实用户证据 Users]
-```
-
-自动模式默认进行 3 轮证据驱动迭代；如果用户明确给出正整数轮数，则尊重该数量。无论轮数多少，验证和最新评审仍必须通过。
-
-## Skill 地图
-
-### 发现与定义
+## Skills
 
 | Skill | 作用 |
 |---|---|
-| [`byte-do`](byte-do/SKILL.md) | 自然语言总入口；根据意图和项目状态选择并执行工作流 |
-| [`byte-brainstorm`](byte-brainstorm/SKILL.md) | 显式调用的发散模式，不自动进入正式流程 |
-| [`byte-future`](byte-future/SKILL.md) | 记录暂时不做的未来想法；不进入目标、计划或自动完成追踪 |
-| [`byte-discuss`](byte-discuss/SKILL.md) | 澄清需求、范围、非目标和风险，不写产品代码 |
-| [`byte-start`](byte-start/SKILL.md) | 初始化 `.byte-os/`、目标、假设、决策和基础研究 |
-| [`byte-research`](byte-research/SKILL.md) | 搜索竞品、定价、趋势、替代方案和用户抱怨 |
-| [`byte-shape`](byte-shape/SKILL.md) | 定义定位、MVP、用户流程、UX、技术方向和路线图 |
+| [`byte-do`](byte-do/SKILL.md) | 自适应入口：理解意图并选择最小有用流程 |
+| [`byte-auto`](byte-auto/SKILL.md) | 对最终结果负责，自主执行到验证完成或真实阻塞 |
+| [`byte-discuss`](byte-discuss/SKILL.md) | 自然讨论需求、方向和重要权衡 |
+| [`byte-research`](byte-research/SKILL.md) | 研究会影响决策的当前证据 |
+| [`byte-plan`](byte-plan/SKILL.md) | 按任务复杂度制定执行计划 |
+| [`byte-build`](byte-build/SKILL.md) | 实现聚焦改动并做相称验证 |
+| [`byte-review`](byte-review/SKILL.md) | 基于真实产物和证据识别关键问题 |
+| [`byte-status`](byte-status/SKILL.md) | 核实已完成、未知、阻塞与下一步 |
+| [`byte-brainstorm`](byte-brainstorm/SKILL.md) | 生成并比较真正不同的方向 |
+| [`byte-future`](byte-future/SKILL.md) | 记录以后再做的想法，不扩大当前范围 |
 
-### 计划与构建
+## 自适应工作方式
 
-| Skill | 作用 |
+`byte-auto` 不再运行固定的 `start → research → shape → plan → build → review → iterate → deliver` 流水线。它会循环执行真正有价值的动作：
+
+1. 检查当前文件、运行状态、证据和已有工作。
+2. 判断最能推进目标的下一步。
+3. 按需研究、规划、实现或评审。
+4. 根据风险进行验证。
+5. 修复重要问题，重新判断是否完成。
+
+小任务可能一次完成；复杂任务可能需要多次迭代。停止条件是结果和验证，而不是固定次数。
+
+## 项目状态
+
+`.byte-os/` 是可选工具，不是前置条件。只有长周期或需要跨会话恢复的项目才建议写状态；默认使用一个简洁的 `.byte-os/STATE.md`，记录目标、事实、决策、完成工作、验证、阻塞和下一步即可。
+
+已有旧版 `.byte-os` 文件可以继续作为项目证据读取，不需要补齐缺失文档，也不会强制项目回到旧生命周期。
+
+## 旧命令迁移
+
+为减少重复和上下文负担，以下旧入口已经移除：
+
+| 旧 skill | 现在使用 |
 |---|---|
-| [`byte-codebase-harness`](byte-codebase-harness/SKILL.md) | 为现有代码库建立 Claude/Codex 导航和验证上下文 |
-| [`byte-plan`](byte-plan/SKILL.md) | 把规格拆成带依赖、验收标准和验证步骤的计划 |
-| [`byte-build`](byte-build/SKILL.md) | 按 dependency-ready waves 执行计划 |
-| [`byte-code-rules`](byte-code-rules/SKILL.md) | 约束代码改动保持简单、克制、可追踪、可验证 |
+| `byte-start`, `byte-shape` | `byte-discuss`, `byte-plan`, `byte-do` |
+| `byte-iterate`, `byte-deliver` | `byte-auto`, `byte-build` |
+| `byte-next` | `byte-do`, `byte-status` |
+| `byte-users` | `byte-research`, `byte-review` |
+| `byte-code-rules` | 已合并进 `byte-build` 和共享原则 |
+| `byte-codebase-harness` | 按需由 `byte-plan`/`byte-build` 创建必要上下文 |
 
-### 评审与交付
+## 说明
 
-| Skill | 作用 |
-|---|---|
-| [`byte-review`](byte-review/SKILL.md) | 产品、UX、技术、QA、增长的跨职能质量门 |
-| [`byte-iterate`](byte-iterate/SKILL.md) | 根据评审、测试、研究或真实反馈进行迭代 |
-| [`byte-deliver`](byte-deliver/SKILL.md) | 生成运行方式、验证结果、风险和最终交付说明 |
-| [`byte-users`](byte-users/SKILL.md) | 只分析真实的产品后用户证据，不模拟用户 |
+产品、商标和公司名称归各自权利人所有。
 
-### 编排与状态
-
-| Skill | 作用 |
-|---|---|
-| [`byte-next`](byte-next/SKILL.md) | 根据共享状态推进一个阶段 |
-| [`byte-status`](byte-status/SKILL.md) | 汇总进度、计划、评审、阻塞和下一步 |
-| [`byte-auto`](byte-auto/SKILL.md) | 从想法持续执行到可交付结果 |
-
-## Byte OS 状态
-
-工作流把项目上下文保存在项目根目录的 `.byte-os/` 中。这里是项目事实源，不是临时聊天记录。
-
-<details>
-<summary><strong>查看目录结构</strong></summary>
-
-```text
-.byte-os/
-  BYTE.md               # 产品和成功标准
-  STATUS.md             # 当前阶段与下一步
-  OKRS.md               # Objective 与 Key Results
-  DECISIONS.md          # 决策和假设
-  RESEARCH.md           # 市场研究
-  COMPETITORS.md        # 竞品比较
-  USER_ASSUMPTIONS.md   # 待验证的用户假设
-  PRODUCT_SPEC.md       # 产品规格
-  UX_SPEC.md            # 用户体验规格
-  TECH_SPEC.md          # 技术规格
-  CODEBASE_MAP.md       # 代码库地图
-  HARNESS.md            # 验证和导航上下文
-  ROADMAP.md            # 路线图
-  BUILD_LOG.md          # 构建记录
-  DELIVERY.md           # 交付说明
-  FUTURE.md             # 不纳入当前完成追踪的未来计划
-  plans/                # 可执行计划
-  reviews/              # 评审记录
-  iterations/           # 迭代记录
-  users/                # 真实用户证据
-  subagents/            # 子代理交接记录
-```
-
-</details>
-
-`byte-do/references/state-contract.md` 定义统一生命周期，`byte-do/scripts/byte_state.py` 负责扫描、路由、校验和更新状态。`byte-do`、`byte-next`、`byte-status` 和 `byte-auto` 使用同一解析器，避免多个路由表逐渐不一致。
-
-```bash
-python3 byte-do/scripts/byte_state.py scan --root /path/to/project
-python3 byte-do/scripts/byte_state.py next --root /path/to/project
-python3 byte-do/scripts/byte_state.py validate --root /path/to/project
-```
-
-## 核心原则
-
-- **Always Day 1：** 保持速度、简单和学习能力。
-- **Context, not control：** 把状态、证据、决策和下一步写进文件。
-- **Candid and clear：** 明确区分事实、假设和观点，直接暴露问题。
-- **Seek truth：** 市场结论使用当前来源，工程结论使用测试和验证。
-- **Aim high with ROI：** 追求高标准，但不做低价值忙碌工作。
-- **Experimentation culture：** 把不确定选择转成假设、指标和实验。
-
-## 重要边界
-
-- `byte-users` 只处理真实用户证据，不会模拟访谈或编造反馈。
-- `byte-future` 只记录明确延期的想法；停放项不进入当前范围，也不会阻塞 `byte-auto`、评审或交付。
-- 现代竞品、价格、趋势和 “latest” 信息必须联网核实并引用来源。
-- 现有仓库或大型 monorepo 应先运行 `byte-codebase-harness`。
-- Subagent 只用于清晰、隔离、可验证的任务；主 agent 保留合并和最终验证责任。
-- 自动模式不会把普通测试失败或评审问题当作停止理由，而会修复、重规划并复审。
-
-## 验证
-
-```bash
-python3 -m unittest discover -s tests -v
-```
-
-当前仓库包含 **20 个状态转移回归测试**，覆盖旧格式兼容、harness 路由、计划状态、评审新鲜度、迭代复审、未来计划隔离、硬阻塞和交付判断。
-
-## 公开资料依据
-
-- [ByteDance Culture](https://joinbytedance.com/culture)
-- [Lark OKR](https://www.larksuite.com/product/okr)
-- [Anthropic: How Claude Code works in large codebases](https://claude.com/blog/how-claude-code-works-in-large-codebases-best-practices-and-where-to-start)
-- [forrestchang/andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills)
-
----
-
-<div align="center">
-
-如果这个项目对你有帮助，欢迎点一个 ⭐️。
-
-**Your own ByteDance, powered by Codex skills.**
-
-</div>
+English documentation: [README_en.md](README_en.md)

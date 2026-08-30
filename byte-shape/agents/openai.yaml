@@ -1,4 +1,0 @@
-interface:
-  display_name: "Your ByteDance Shape"
-  short_description: "Shape MVP, UX, OKRs, scope, and roadmap."
-  default_prompt: "Use $byte-shape to define the product MVP and user experience."

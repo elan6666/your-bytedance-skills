@@ -1,4 +1,0 @@
-interface:
-  display_name: "Your ByteDance Start"
-  short_description: "Start a ByteDance-inspired product squad."
-  default_prompt: "Use $byte-start to start a Your ByteDance workflow from this idea."

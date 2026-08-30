@@ -1,4 +1,0 @@
-interface:
-  display_name: "Your ByteDance Codebase Harness"
-  short_description: "Make large repos navigable for Claude and Codex."
-  default_prompt: "Use $byte-codebase-harness to create Claude/Codex context files, codebase maps, scoped commands, and noise filters for this repository."

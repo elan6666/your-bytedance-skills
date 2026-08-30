@@ -1,4 +1,0 @@
-interface:
-  display_name: "Your ByteDance Users"
-  short_description: "Analyze real post-build user evidence only."
-  default_prompt: "Use $byte-users to analyze these real user feedback materials."

@@ -1,4 +1,4 @@
 interface:
   display_name: "Your ByteDance Do"
-  short_description: "Route Byte OS work and decide goal/subagent mode."
-  default_prompt: "Use $byte-do to route my product request, decide whether Pursue Goal mode or subagent mode should be used, and execute the matching Your ByteDance workflow."
+  short_description: "Adaptively route and execute product work."
+  default_prompt: "Use $byte-do to choose and execute the smallest useful Byte workflow for this request."
