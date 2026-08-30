@@ -1,6 +1,6 @@
 ---
 name: byte-auto
-description: Autonomously carry a product or project request from the current state to a verified deliverable. Use when the user asks for one-click completion, all necessary work, end-to-end execution, or persistence until the requested outcome is genuinely handled.
+description: Complete a multi-step product or project request end to end and verify the result. Use when the user asks for one-click completion, all necessary work, or persistence until the outcome is genuinely handled.
 ---
 
 # Byte Auto

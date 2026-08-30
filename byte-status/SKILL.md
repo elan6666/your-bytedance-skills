@@ -1,6 +1,6 @@
 ---
 name: byte-status
-description: Inspect and summarize the real current state of a Byte OS project or related work. Use when the user asks for progress, status, blockers, what remains, what is actually complete, or the best next action.
+description: Inspect and summarize the real current state of a project. Use when the user asks for progress, status, blockers, what remains, what is actually complete, or the best next action.
 ---
 
 # Byte Status

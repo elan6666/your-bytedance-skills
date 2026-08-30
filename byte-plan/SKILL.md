@@ -1,6 +1,6 @@
 ---
 name: byte-plan
-description: Create an execution plan for product, engineering, research, or delivery work. Use when the user asks for a plan, when a complex change benefits from sequencing, or when dependencies and acceptance criteria should be made explicit before execution.
+description: Create an appropriately detailed execution plan. Use when the user explicitly asks for a plan, roadmap, implementation approach, sequencing, dependencies, or acceptance criteria before execution.
 ---
 
 # Byte Plan
@@ -32,10 +32,9 @@ enumerating them prematurely.
 For an existing codebase, use repository instructions and live inspection. A
 missing Byte OS artifact or harness is not by itself a planning blocker.
 
-Read relevant active lessons before planning. If evidence or user correction
-shows that the plan relied on a materially wrong assumption, record the corrected
-premise and prevention rule in `.byte-os/LESSONS.md`; do not log ordinary plan
-revision.
+Apply relevant active lessons before planning. If evidence or user correction
+confirms a reusable wrong assumption, update `.byte-os/LESSONS.md` with the
+corrected premise and prevention rule. Do not log ordinary plan revision.
 
 Save plans only when they need to survive the current turn, coordinate multiple
 tracks, or support resumption. Reuse the project's existing planning convention;

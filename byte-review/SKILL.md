@@ -1,6 +1,6 @@
 ---
 name: byte-review
-description: Review a product, implementation, plan, or deliverable for correctness, user value, regressions, risks, and readiness. Use when the user asks for review, audit, critique, quality assessment, or an evidence-based decision about what should change next.
+description: Review a product, implementation, plan, or deliverable for material issues and readiness. Use when the user asks for review, audit, critique, quality assessment, or what should change next.
 ---
 
 # Byte Review
@@ -30,8 +30,8 @@ Do not require a verdict schema, a fixed number of findings, or a Byte OS state
 transition.
 
 When review evidence confirms a reusable mistake, false completion claim, or
-repeated requirement misunderstanding, create or update the matching entry in
-`.byte-os/LESSONS.md`. Record evidence and a prevention rule, not blame.
+requirement misunderstanding, update the matching `.byte-os/LESSONS.md` entry
+with evidence and a prevention rule, not blame.
 
 ## Source And Updates
 

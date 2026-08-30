@@ -1,6 +1,6 @@
 ---
 name: byte-discuss
-description: Discuss and clarify product requirements, tradeoffs, or direction before implementation. Use when the user wants to think together, compare choices, resolve ambiguity, confirm scope, or explicitly avoid starting implementation yet.
+description: Clarify requirements, tradeoffs, or direction without implementing. Use when the user asks to discuss first, compare choices, resolve ambiguity, or confirm scope.
 ---
 
 # Byte Discuss
@@ -24,10 +24,10 @@ paragraph may be enough; a comparison table may be better for several options.
 Persist notes only when the user asks or the discussion is part of a resumable
 project. Prefer a concise decision note over multiple Byte OS artifacts.
 
-When the user corrects a material misunderstanding of their requirement, record
-the confirmed correction and a reusable prevention rule in
-`.byte-os/LESSONS.md`. Do not treat ordinary clarification as a mistake or log
-sensitive details unnecessarily.
+Apply relevant active lessons when present. If the user corrects a material
+misunderstanding, update `.byte-os/LESSONS.md` with the correction and a reusable
+prevention rule. Do not treat ordinary clarification as a mistake or store
+sensitive details.
 
 Conclude with the clearest current recommendation and any genuinely unresolved
 decision. Suggest another Byte skill only when it would be useful.

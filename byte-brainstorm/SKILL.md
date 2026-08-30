@@ -1,6 +1,6 @@
 ---
 name: byte-brainstorm
-description: Generate and compare substantially different product, feature, or strategy directions. Use when the user explicitly asks to brainstorm, expand possibilities, seek creative alternatives, or escape a prematurely fixed solution.
+description: Generate and compare distinct product, feature, or strategy directions. Use when the user explicitly asks to brainstorm, expand options, or escape a prematurely fixed solution.
 ---
 
 # Byte Brainstorm

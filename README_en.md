@@ -37,6 +37,11 @@ Let the system choose the right approach:
 $byte-do Move this product idea to the most useful next result.
 ```
 
+`byte-do` is an explicit front door. It activates when you invoke `$byte-do` or
+ask Byte to choose the approach, which prevents it from competing with focused
+skills. Ordinary build, research, planning, or review requests can use the
+matching skill directly.
+
 Complete an outcome end to end:
 
 ```text
@@ -58,7 +63,7 @@ $byte-status Verify the real project status.
 
 | Skill | Purpose |
 |---|---|
-| [`byte-do`](byte-do/SKILL.md) | Adaptive entry point that selects the smallest useful workflow |
+| [`byte-do`](byte-do/SKILL.md) | Explicit adaptive entry point for mixed work |
 | [`byte-auto`](byte-auto/SKILL.md) | Own an outcome through verification or a genuine blocker |
 | [`byte-discuss`](byte-discuss/SKILL.md) | Discuss requirements, direction, and important tradeoffs naturally |
 | [`byte-research`](byte-research/SKILL.md) | Research current evidence that can change a decision |

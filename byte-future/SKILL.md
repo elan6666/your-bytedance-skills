@@ -1,6 +1,6 @@
 ---
 name: byte-future
-description: Record an idea or possible enhancement for later without adding it to current scope. Use when the user says save for later, future plan, parking lot, not now, or explicitly wants an idea remembered but not implemented.
+description: Record an idea for later without adding it to current scope. Use when the user says save for later, parking lot, not now, or remember this without implementing it.
 ---
 
 # Byte Future

@@ -37,6 +37,8 @@ cp -R byte-* ~/.codex/skills/
 $byte-do 帮我把这个产品想法推进到下一步
 ```
 
+`byte-do` 是显式总入口，只有调用 `$byte-do` 或明确让 Byte 选择工作方式时才启用，避免它与具体能力重复触发。普通构建、研究、规划或评审请求可以直接使用对应 skill。
+
 端到端完成：
 
 ```text
@@ -58,7 +60,7 @@ $byte-status 核实项目真实进度
 
 | Skill | 作用 |
 |---|---|
-| [`byte-do`](byte-do/SKILL.md) | 自适应入口：理解意图并选择最小有用流程 |
+| [`byte-do`](byte-do/SKILL.md) | 显式自适应入口：为混合任务选择最小有用能力 |
 | [`byte-auto`](byte-auto/SKILL.md) | 对最终结果负责，自主执行到验证完成或真实阻塞 |
 | [`byte-discuss`](byte-discuss/SKILL.md) | 自然讨论需求、方向和重要权衡 |
 | [`byte-research`](byte-research/SKILL.md) | 研究会影响决策的当前证据 |

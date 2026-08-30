@@ -1,6 +1,6 @@
 ---
 name: byte-do
-description: Route and execute Byte OS product work from natural-language intent. Use for starting, discussing, researching, planning, building, reviewing, improving, checking, or completing a product when the user wants the right amount of process without choosing a specific Byte skill.
+description: Choose and execute the useful Byte capabilities for a mixed product or project request. Use when the user explicitly invokes $byte-do or asks Byte to select the workflow; focused requests should use the matching skill.
 ---
 
 # Byte Do
@@ -18,24 +18,16 @@ Act as the adaptive front door to the Byte skills. Optimize for the user's outco
 - Learn from confirmed mistakes and corrected requirement misunderstandings.
 - Use subagents or goal tracking only when the user explicitly requests them and the environment supports them.
 
-## Routing
+## Capability Choice
 
-Honor an explicit `$byte-*` invocation. Otherwise choose by the work actually needed:
+Honor an explicit `$byte-*` selection. Otherwise use only the capabilities that
+materially help the requested result: discussion, ideation, research, planning,
+implementation, review, autonomous completion, status inspection, or parking a
+future item.
 
-- clarify direction: `byte-discuss`
-- compare open-ended ideas: `byte-brainstorm`
-- investigate external facts: `byte-research`
-- define scope or approach: `byte-plan`
-- implement or change something: `byte-build`
-- assess quality or risks: `byte-review`
-- complete a multi-step outcome autonomously: `byte-auto`
-- inspect progress: `byte-status`
-
-Use `byte-future` as a focused parking-lot tool. Do not force the user through
-named stages when several capabilities can be combined naturally.
-
-If several capabilities are needed, combine them naturally. A route is an aid,
-not a prerequisite graph.
+Act directly when ordinary reasoning is enough. Do not load another Byte skill
+merely because it exists, announce an internal route by default, or force named
+stages. Combine capabilities naturally when the outcome genuinely needs them.
 
 ## State
 
