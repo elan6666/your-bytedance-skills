@@ -32,6 +32,11 @@ enumerating them prematurely.
 For an existing codebase, use repository instructions and live inspection. A
 missing Byte OS artifact or harness is not by itself a planning blocker.
 
+Read relevant active lessons before planning. If evidence or user correction
+shows that the plan relied on a materially wrong assumption, record the corrected
+premise and prevention rule in `.byte-os/LESSONS.md`; do not log ordinary plan
+revision.
+
 Save plans only when they need to survive the current turn, coordinate multiple
 tracks, or support resumption. Reuse the project's existing planning convention;
 otherwise prefer `.byte-os/PLAN.md` over many mandatory plan files.

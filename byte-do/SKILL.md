@@ -15,6 +15,7 @@ Act as the adaptive front door to the Byte skills. Optimize for the user's outco
 - Treat tests, live behavior, current sources, and user-provided evidence as stronger than status files or prior summaries.
 - Preserve user work and make consequential or irreversible actions explicit.
 - State assumptions and remaining limits honestly.
+- Learn from confirmed mistakes and corrected requirement misunderstandings.
 - Use subagents or goal tracking only when the user explicitly requests them and the environment supports them.
 
 ## Routing
@@ -45,6 +46,34 @@ without requiring missing legacy artifacts to be created.
 
 Interpret older Byte OS artifacts as ordinary project evidence. Live repository
 and runtime evidence remains authoritative.
+
+## Lessons Notebook
+
+Before related work, read active entries in `.byte-os/LESSONS.md` when it exists
+and apply relevant prevention rules.
+
+After the user corrects a requirement misunderstanding, or direct evidence
+confirms a meaningful mistake, create or update `.byte-os/LESSONS.md`. Record a
+lesson only when it is likely to prevent future error. Do not record routine
+exploration failures, trivial slips, vague self-criticism, duplicates, secrets,
+or sensitive user data.
+
+Use a concise entry:
+
+```markdown
+## <date> — <lesson title>
+- Context:
+- Mistake or misunderstanding:
+- Correct understanding and evidence:
+- Prevention rule:
+- Status: active
+```
+
+If the same mistake recurs, update the existing entry with recurrence evidence
+instead of creating another. Mark a lesson `superseded` when later evidence
+invalidates it. This notebook is the one Byte OS artifact that may be created on
+demand even when no other persistent state is needed, unless the user asks for
+discussion only or no file changes.
 
 ## Response
 

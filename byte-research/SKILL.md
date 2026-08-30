@@ -26,3 +26,8 @@ they add little value. Cite current web claims near the claims they support.
 Save research only when it will be reused, audited, or handed off. Use the
 project's existing convention or a concise `.byte-os/RESEARCH.md`; do not require
 both research and competitor files.
+
+If direct evidence disproves a consequential prior assumption, add a concise
+entry to `.byte-os/LESSONS.md` with the correction, supporting evidence, and a
+future verification rule. Do not turn changing external facts into personal
+mistakes unless the earlier claim lacked appropriate verification.

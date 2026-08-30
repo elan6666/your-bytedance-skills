@@ -24,11 +24,13 @@ material and unsafe to infer.
 
 Repeat as useful:
 
-1. Inspect the current files, runtime, evidence, and prior work.
+1. Inspect the current files, runtime, evidence, prior work, and relevant active lessons.
 2. Decide the highest-value next action.
 3. Research, plan, implement, or review only as needed.
 4. Verify in proportion to risk.
 5. Repair important failures and reassess completion.
+6. Record a reusable lesson when evidence confirms a meaningful mistake or the
+   user corrects a requirement misunderstanding.
 
 Do not use a fixed iteration count. A small task may need one pass; a difficult
 task may need several. Do not stop merely because a stage or plan finished.
@@ -53,6 +55,11 @@ For long or resumable work, keep a concise `.byte-os/STATE.md` or update the
 project's existing state mechanism. Record only what a future session needs:
 goal, evidence, decisions, completed work, verification, blockers, and next step.
 Do not create a full Byte OS document set by default.
+
+Use `.byte-os/LESSONS.md` as the automatic error notebook. Keep only confirmed,
+reusable lessons with the mistake, corrected understanding or evidence, and a
+specific prevention rule. Deduplicate recurring mistakes and never store secrets
+or routine trial-and-error noise.
 
 ## Handoff
 

@@ -11,6 +11,10 @@ Inspect the relevant files, version control state, tests, processes, outputs, an
 Byte OS notes in proportion to the question. Treat stale or conflicting status
 documents as evidence to reconcile, not as the source of truth.
 
+Read `.byte-os/LESSONS.md` when present. Report an active lesson only when it is
+relevant to current risk, a repeated mistake, or the next action; do not make the
+status report a full notebook dump.
+
 Summarize:
 
 - what is demonstrably complete;

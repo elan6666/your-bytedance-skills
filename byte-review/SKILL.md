@@ -11,6 +11,7 @@ could realistically make the result wrong, harmful, confusing, or incomplete.
 ## Method
 
 - Establish the intended behavior and scope.
+- Check relevant active lessons for repeated mistakes.
 - Inspect relevant code, files, runtime behavior, tests, or sources.
 - Prioritize concrete findings by impact and confidence.
 - Distinguish confirmed defects from risks, preferences, and missing evidence.
@@ -27,3 +28,7 @@ material findings, say so and note meaningful verification limits.
 Write a review artifact only when it will be tracked or used for later iteration.
 Do not require a verdict schema, a fixed number of findings, or a Byte OS state
 transition.
+
+When review evidence confirms a reusable mistake, false completion claim, or
+repeated requirement misunderstanding, create or update the matching entry in
+`.byte-os/LESSONS.md`. Record evidence and a prevention rule, not blame.

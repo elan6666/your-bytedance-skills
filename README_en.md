@@ -14,6 +14,7 @@ Your ByteDance is a lightweight set of Codex skills for discussing, researching,
 - **Adaptive judgment:** let the task determine research, planning, documentation, and iteration depth.
 - **Minimum useful process:** act directly on simple work and add structure only when complexity justifies it.
 - **Real evidence:** prefer code, tests, runtime behavior, current sources, and real feedback over status narratives.
+- **Automatic learning:** turn confirmed mistakes and requirement misunderstandings into reusable prevention rules.
 - **Honest delivery:** disclose verification, assumptions, failures, and remaining limits.
 
 The project no longer requires fixed stages, three iterations, OKRs, role-play, a complete `.byte-os` document set, a harness gate, or multi-file plans.
@@ -83,6 +84,22 @@ A small task may finish in one pass. A difficult task may need several. Completi
 ## Project State
 
 `.byte-os/` is optional. Use it when a long-running project needs resumable context. The default is one concise `.byte-os/STATE.md` containing the goal, current facts, decisions, completed work, verification, blockers, and next action.
+
+### Automatic Lessons Notebook
+
+When the user corrects a material misunderstanding of their request, or direct
+evidence such as tests and runtime behavior confirms a reusable mistake, the
+skills automatically create or update `.byte-os/LESSONS.md`. Each lesson records:
+
+- the context;
+- the mistake or misunderstanding;
+- the correct understanding and evidence;
+- a prevention rule for future work.
+
+Relevant active lessons are read before new work. A recurring mistake updates the
+existing entry instead of creating duplicates. Routine exploration failures,
+temporary debugging noise, vague self-criticism, secrets, and sensitive user data
+are not recorded.
 
 Existing legacy Byte OS files remain useful as project evidence. Missing artifacts do not need to be recreated, and recorded stages do not force the old lifecycle.
 

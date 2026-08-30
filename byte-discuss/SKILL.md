@@ -24,5 +24,10 @@ paragraph may be enough; a comparison table may be better for several options.
 Persist notes only when the user asks or the discussion is part of a resumable
 project. Prefer a concise decision note over multiple Byte OS artifacts.
 
+When the user corrects a material misunderstanding of their requirement, record
+the confirmed correction and a reusable prevention rule in
+`.byte-os/LESSONS.md`. Do not treat ordinary clarification as a mistake or log
+sensitive details unnecessarily.
+
 Conclude with the clearest current recommendation and any genuinely unresolved
 decision. Suggest another Byte skill only when it would be useful.
