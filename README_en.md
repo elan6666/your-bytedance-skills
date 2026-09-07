@@ -29,6 +29,18 @@ cp -R byte-* ~/.codex/skills/
 
 If you installed an older release, remove its deprecated skill directories separately. Copying the new release does not delete old directories.
 
+## Maintaining shared workflows
+
+Each skill bundles its own workflow reference and can be installed independently.
+Edit only `byte-auto/references/long-running-work.md`; the other five copies are
+bundled distribution files. Synchronize after editing, and check consistency
+before committing or publishing:
+
+```bash
+python3 scripts/sync_shared_references.py
+python3 scripts/sync_shared_references.py --check
+```
+
 ## Quick Start
 
 Let the system choose the right approach:

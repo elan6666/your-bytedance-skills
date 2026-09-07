@@ -67,6 +67,15 @@ Lead with the delivered result. Summarize meaningful changes, verification, and
 remaining limits. Do not end with a workflow command when safe in-scope work is
 still unfinished.
 
+## Goals And Long-Running Work
+
+Default to bounded goals for complex execution tasks when tool authority and
+availability permit; use ordinary phase state otherwise. For this cycle, read [the long-running workflow](references/long-running-work.md): complete the
+preparation goal before launch, hand off to scheduled checks, then create the
+next goal from verified terminal evidence. Overall completion still requires the
+user's final deliverable. Scheduled waiting is a resumable handoff, not a blocker
+or task completion.
+
 ## Source And Updates
 
 Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.

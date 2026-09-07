@@ -33,6 +33,15 @@ When user correction or direct evidence confirms a reusable mistake, create or
 update one deduplicated `.byte-os/LESSONS.md` entry with the correction, evidence,
 and prevention rule. Exclude routine debugging, trivial slips, and sensitive data.
 
+## Long-Running Execution
+
+Default to [the bounded-goal workflow](references/long-running-work.md)
+for complex implementation. When a long external job is needed, finish the
+preparation goal before launch, verify the job identity, and establish scheduled
+monitoring subject to the workflow's tool-authority rules.
+Resume actionable work under a new goal only after verified terminal evidence;
+a job submission does not establish the requested result.
+
 ## Source And Updates
 
 Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.

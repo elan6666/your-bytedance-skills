@@ -29,6 +29,15 @@ unless the user also asks to continue or repair it.
 Interpret legacy Byte OS artifacts as ordinary evidence; their recorded stage
 does not override explicit intent or live behavior.
 
+## Scheduled Work
+
+For an existing long-running handoff, inspect the job identity, live scheduler
+or process state, terminal receipt, expected outputs, and monitor status. Report
+phase-goal completion separately from job success and overall completion. A
+missing process or stale log is not proof of success. Status-only requests do not
+create goals or monitors; authorized continuation follows
+[the long-running workflow](references/long-running-work.md).
+
 ## Source And Updates
 
 Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.

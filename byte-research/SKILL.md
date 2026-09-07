@@ -30,6 +30,14 @@ If direct evidence disproves a reusable prior assumption, update
 `.byte-os/LESSONS.md` with the correction, evidence, and future verification rule.
 Do not treat ordinary changes in external facts as mistakes.
 
+## Long-Running Evidence Collection
+
+For complex research execution, default to
+[the long-running workflow](references/long-running-work.md)
+for bounded preparation, scheduled waiting when a long external collection or
+compute job is needed, and post-run analysis. Follow its tool-authority rules;
+ordinary searches do not need goal mode or an automation.
+
 ## Source And Updates
 
 Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.

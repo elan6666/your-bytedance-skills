@@ -43,6 +43,16 @@ otherwise prefer `.byte-os/PLAN.md` over many mandatory plan files.
 Planning is complete when another capable agent could begin safely without the
 plan pretending to eliminate all judgment.
 
+## Long-Running Boundaries
+
+Default complex execution plans to bounded actionable goals. For training or
+another long external job, plan a preparation goal
+whose acceptance ends before launch, a launch-and-monitor handoff, and a new goal
+after verified job termination. Keep final project acceptance separate from each
+phase. Follow [the long-running workflow](references/long-running-work.md)
+when designing these boundaries; planning alone does not authorize goal tools,
+job execution, or scheduled checks.
+
 ## Source And Updates
 
 Canonical repository: [elan6666/your-bytedance-skills](https://github.com/elan6666/your-bytedance-skills). Use its current `main` branch when checking for or installing updates.

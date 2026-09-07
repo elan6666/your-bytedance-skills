@@ -29,6 +29,17 @@ cp -R byte-* ~/.codex/skills/
 
 如果安装过旧版，请另外删除已废弃的旧 skill 目录；仅复制新版不会自动删除旧目录。
 
+## 维护共享流程
+
+每个 skill 都携带自己的流程引用，可以单独安装。长任务流程以
+`byte-auto/references/long-running-work.md` 为唯一编辑来源，其余 5 份是随技能分发的副本，不要单独编辑。
+修改源文件后同步，提交或发布前检查一致性：
+
+```bash
+python3 scripts/sync_shared_references.py
+python3 scripts/sync_shared_references.py --check
+```
+
 ## 快速使用
 
 让系统选择合适方式：

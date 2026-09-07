@@ -16,7 +16,7 @@ Act as the adaptive front door to the Byte skills. Optimize for the user's outco
 - Preserve user work and make consequential or irreversible actions explicit.
 - State assumptions and remaining limits honestly.
 - Learn from confirmed mistakes and corrected requirement misunderstandings.
-- Use subagents or goal tracking only when the user explicitly requests them and the environment supports them.
+- Use subagents only when explicitly requested and supported. Default complex execution to the bounded-goal cycle below, subject to tool authority.
 
 ## Capability Choice
 
@@ -71,6 +71,14 @@ discussion only or no file changes.
 
 Lead with the result. Mention routing, artifacts, or next commands only when they
 help the user understand or continue the work. Do not emit a fixed status template.
+
+## Long-Running Routing
+
+Default complex execution tasks to
+[the long-running workflow](references/long-running-work.md).
+Keep preparation goals, scheduled waiting, and post-run goals distinct while
+preserving the overall outcome. Apply its tool-authority rules and honor user
+opt-outs. Create a monitor only when there is a long external wait.
 
 ## Source And Updates
 
