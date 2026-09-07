@@ -70,9 +70,11 @@ still unfinished.
 ## Goals And Long-Running Work
 
 Default to bounded goals for complex execution tasks when tool authority and
-availability permit; use ordinary phase state otherwise. For this cycle, read [the long-running workflow](references/long-running-work.md): complete the
-preparation goal before launch, hand off to scheduled checks, then create the
-next goal from verified terminal evidence. Overall completion still requires the
+availability permit; use ordinary phase state otherwise. Read
+[the long-running workflow](references/long-running-work.md): design monitoring
+inside the preparation goal, complete that goal before launch and monitor
+activation, then disable the monitor before any next goal. An active goal and
+enabled monitor for the same workflow must not overlap. Overall completion still requires the
 user's final deliverable. Scheduled waiting is a resumable handoff, not a blocker
 or task completion.
 

@@ -47,8 +47,9 @@ plan pretending to eliminate all judgment.
 
 Default complex execution plans to bounded actionable goals. For training or
 another long external job, plan a preparation goal
-whose acceptance ends before launch, a launch-and-monitor handoff, and a new goal
-after verified job termination. Keep final project acceptance separate from each
+whose acceptance includes the monitoring design and ends before launch, a
+launch-and-monitor handoff, and monitor shutdown before any post-run goal.
+Never plan an active goal and enabled monitor for the same workflow together. Keep final project acceptance separate from each
 phase. Follow [the long-running workflow](references/long-running-work.md)
 when designing these boundaries; planning alone does not authorize goal tools,
 job execution, or scheduled checks.

@@ -37,9 +37,9 @@ and prevention rule. Exclude routine debugging, trivial slips, and sensitive dat
 
 Default to [the bounded-goal workflow](references/long-running-work.md)
 for complex implementation. When a long external job is needed, finish the
-preparation goal before launch, verify the job identity, and establish scheduled
-monitoring subject to the workflow's tool-authority rules.
-Resume actionable work under a new goal only after verified terminal evidence;
+preparation goal with the monitoring plan designed, then launch, verify the job
+identity, and enable monitoring subject to the workflow's tool-authority rules.
+Disable and verify the monitor after terminal evidence, before any new goal;
 a job submission does not establish the requested result.
 
 ## Source And Updates
